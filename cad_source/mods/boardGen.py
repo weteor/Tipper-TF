@@ -1,28 +1,9 @@
 import cadquery as cq
 from dataclasses import dataclass
-# from math import cos,sin,radians
-# from .common import *
+
 from .common import *
 from copy import copy
-
-# def GetPosCartesian(start, coords):
-#     X=0
-#     Y=1
-#     tmp = start
-#     for (l,a) in coords:
-#         tmp = (tmp[0] + l * cos(radians(a)), tmp[Y] + l * sin(radians(a)))
-#     return tmp
-
-# def cut(base, vertString, moveBy, baseLength, rotation=0, center=(True,False)):
-#     return ( base
-#             .faces(">Z").vertices(vertString).workplane(centerOption="CenterOfMass",)
-#             .transformed(rotate=(0,0, rotation))
-#             .move(*moveBy)
-#             .rect(baseLength*2,baseLength*2,center)
-#             .cutThruAll()
-#            )
-
-
+import math
 
 @dataclass
 class keebConfig:
@@ -35,18 +16,17 @@ class keebConfig:
     cols : int
     keysPerCol: tuple
     stagger: tuple
+    staggerX: tuple
     colRot: tuple
     tClusterRot: tuple
     tClusterPos: tuple
+    tClusterSize: tuple
     tClusterSpacing: float
     handRotation: float
     handDistance: float
     holeToEdge: float
-    doFillet: bool
     filletSizeLarge: float
     filletSizeSmall: float
-    startCorrection: float
-    outerThumb1u5: bool
     upperEdgeOffset: float = 0
     pass
 
@@ -63,10 +43,11 @@ class caseConfig:
 
 def doFillet(obj, cfg):
     ret = obj.edges("|Z and >Y").fillet(cfg.filletSizeLarge)
-    ret = ret.edges("|Z").edges(">>X[-2] or <<X[-2]").fillet(cfg.filletSizeLarge)
+    # ret = ret.edges("|Z").edges(">>X[-2] or <<X[-2]").fillet(cfg.filletSizeLarge)
     ret = ret.edges("|Z").edges(">X or <X").fillet(cfg.filletSizeLarge)
     ret = ret.faces("#Z and |Y").faces(">>Y[-2]").edges("|Z").fillet(cfg.filletSizeSmall)
     ret = ret.edges("|Z and <Y").fillet(cfg.filletSizeSmall)
+    return ret
     
     return ret
 
@@ -75,105 +56,101 @@ def GeneratePlate(cfg):
     
     baseLength=cfg.rows*cfg.cols*cfg.hSize[0]*4
     base = cq.Workplane("XY").rect(baseLength, baseLength).extrude(cfg.height_plate)
+
+    locs = []
     
-    #alphas r
-    hPnts = []
     for i in range(cfg.cols):
+        angle = cfg.colRot[i]
+        angle_rad = math.radians(angle) 
         for j in range(cfg.keysPerCol[i]):
-            hPnts.append((i*cfg.spacing[0], j*cfg.spacing[1]+cfg.stagger[i]))
-    
-    
-    thPnts = []
-    tstart = (-cfg.tClusterPos[0],-cfg.tClusterPos[1]-cfg.spacing[1])
-
-    tmp = GetPosCartesian(tstart, [( cfg.hSize[1]/2, cfg.tClusterRot[1]+270),
-                                   ( cfg.hSize[0]/2+cfg.tClusterSpacing/2, cfg.tClusterRot[1]+180),
-                                   ( cfg.hSize[0]/2+cfg.tClusterSpacing/2, cfg.tClusterRot[0]+180),
-                                   ( cfg.hSize[1]/2, cfg.tClusterRot[0]-270)
-                                  ])
-    
-    thPnts.append(tmp)
-    
-    for i in range(len(cfg.tClusterRot)-1):
-        if(cfg.outerThumb1u5 and i == len(cfg.tClusterRot)-1):
-            tmp = GetPosCartesian((0,0), [( cfg.hSize[1]/2, cfg.tClusterRot[i]+270),
-                                          ( cfg.hSize[0]/2+cfg.tClusterSpacing/2, cfg.tClusterRot[i]),
-                                          ( cfg.hSize[0]/2+cfg.tClusterSpacing/2+0.25*cfg.spacing[0], cfg.tClusterRot[i+1]),
-                                          ( cfg.hSize[1]/2, cfg.tClusterRot[i+1]-270)
-                                         ])
-        else:
-            tmp = GetPosCartesian((0,0), [( cfg.hSize[1]/2, cfg.tClusterRot[i]+270),
-                                          ( cfg.hSize[0]/2+cfg.tClusterSpacing/2, cfg.tClusterRot[i]),
-                                          ( cfg.hSize[0]/2+cfg.tClusterSpacing/2, cfg.tClusterRot[i+1]),
-                                          ( cfg.hSize[1]/2, cfg.tClusterRot[i+1]-270)
-                                         ])
-        thPnts.append(tmp)
-    
-    
-    base = (base.transformed(rotate=(0,0,cfg.handRotation))
-            .pushPoints(hPnts)
-            .rect(cfg.hSize[0], cfg.hSize[1])
-            .cutThruAll()
+            x = (i*cfg.spacing[0] + cfg.staggerX[i] +
+                 j*cfg.spacing[1] * math.sin(angle_rad) )
+            y = (cfg.stagger[i] +
+                 j*cfg.spacing[1] * math.cos(angle_rad) )
+            loc = cq.Location(cq.Vector((x,y,0)), cq.Vector((0,0,1)), -angle)
+            locs.append(loc)
+        
+    start = (-cfg.spacing[0] + cfg.tClusterPos[0],-cfg.spacing[1] - cfg.tClusterPos[1]  )
+    thumbs = len(cfg.tClusterRot)
+    for i in range(thumbs):
+        angle = cfg.tClusterRot[i]
+        angle_next = cfg.tClusterRot[(i+1)%thumbs]
+        angle_rad = math.radians(angle)
+        loc = cq.Location(cq.Vector((*start, 0)), cq.Vector((0,0,1)), angle)
+        locs.append(loc)
+        x = ( start[0] +
+             (0.5 * cfg.hSize[1] * math.sin(math.radians(-angle+180))) +
+             (0.5 * (cfg.spacing[0]*cfg.tClusterSize[i]+cfg.tClusterSpacing) * math.sin(math.radians(-angle+90))) +
+             (0.5 * (cfg.spacing[0]*cfg.tClusterSize[(i+1)%thumbs]+cfg.tClusterSpacing) * math.sin(math.radians(-angle_next+90))) +
+             (0.5 * cfg.hSize[1] * math.sin(math.radians(-angle_next)))
              )
+        y = ( start[1] +
+             (0.5 * cfg.hSize[1] * math.cos(math.radians(-angle+180))) +
+             (0.5 * (cfg.spacing[0]*cfg.tClusterSize[i]+cfg.tClusterSpacing) * math.cos(math.radians(-angle+90))) +
+             (0.5 * (cfg.spacing[0]*cfg.tClusterSize[(i+1)%thumbs]+cfg.tClusterSpacing) * math.cos(math.radians(-angle_next+90))) +
+             (0.5 * cfg.hSize[1] * math.cos(math.radians(-angle_next)))
+             )
+        start = (x,y)
     
-    for i,tc in enumerate(thPnts):
-        if (cfg.outerThumb1u5 and i==len(thPnts)-1):
-            base = (base.faces(">Z").workplane().transformed(rotate=(0,0,cfg.handRotation))
-                     .center(*thPnts[i])
-                     .transformed(rotate=(0,0,cfg.tClusterRot[i]))
-                     .center(4.5,0)
-                     .rect(cfg.hSize[0],cfg.hSize[1])
-                     .cutThruAll()
-                     )
-        else:
-            base = (base.faces(">Z").workplane().transformed(rotate=(0,0,cfg.handRotation))
-                     .center(*thPnts[i])
-                     .transformed(rotate=(0,0,cfg.tClusterRot[i]))
-                     .rect(cfg.hSize[0],cfg.hSize[1])
-                     .cutThruAll()
-                     )
+    base = base.pushPoints(locs).rect(*cfg.hSize).cutThruAll()
+    
+    locs = []
+    
+    start = (-cfg.spacing[0] + cfg.tClusterPos[0],-cfg.spacing[1] - cfg.tClusterPos[1]  )
+    angle = cfg.tClusterRot[0]
+    
+    x = ( start[0] +
+          (0.5 * cfg.hSize[1] * math.sin(math.radians(-angle+180))) +
+          (0.5 * (cfg.spacing[0]*cfg.tClusterSize[0]+cfg.tClusterSpacing) * math.sin(math.radians(-angle+90))) +
+          (cfg.holeToEdge * math.sin(math.radians(180+(cfg.tClusterRot[1]-cfg.tClusterRot[0])/2)))
+         )
+    
+    y = ( start[1] +
+          (0.5 * cfg.hSize[1] * math.cos(math.radians(-angle+180))) +
+          (0.5 * (cfg.spacing[0]*cfg.tClusterSize[0]+cfg.tClusterSpacing) * math.cos(math.radians(-angle+90))) +
+          (cfg.holeToEdge * math.cos(math.radians(180+(cfg.tClusterRot[1]-cfg.tClusterRot[0])/2)))
+         )
 
+    loc = cq.Location(cq.Vector((x,y, 0)), cq.Vector((0,0,1)), 180+angle)
+    locs.append(loc) 
+
+    loc = cq.Location(cq.Vector((x,y, 0)), cq.Vector((0,0,1)), 270+cfg.tClusterRot[1])
+    locs.append(loc)
+    start = (x,y)
     
-    LMThumbPos = GetPosCartesian(tstart, [( cfg.hSize[1]/2, cfg.tClusterRot[1]+270),
-                                          ( cfg.hSize[0]/2+cfg.tClusterSpacing/2, cfg.tClusterRot[1]+180),
-                                          ( cfg.holeToEdge*1.35, 270+(cfg.tClusterRot[0]+cfg.tClusterRot[1])/2),
-                                         ])
+    base = base.pushPoints(locs).rect(baseLength*2,baseLength*2,(False,False)).cutThruAll().rotate((0,0,0), (0,0,1), cfg.handRotation)
     
+    locs = []
     
-    base = (base.faces(">Z").workplane(centerOption='CenterOfBoundBox')
-                .transformed(rotate=(0,0,cfg.handRotation))
-                .center(*LMThumbPos)
-                .transformed(rotate=(0,0,180+cfg.tClusterRot[0]))
-                .rect(baseLength*2,baseLength*2,(False,False))
-                .cutThruAll()
-                )
+    start =  base.faces(">Z").vertices(">>X[-3]").val().toTuple()
+    x = start[0] + cfg.holeToEdge * math.sin(math.radians(cfg.handRotation-cfg.colRot[-1]+90))
+    y = start[1] + cfg.holeToEdge * math.cos(math.radians(cfg.handRotation-cfg.colRot[-1]+90))
+    loc = cq.Location(cq.Vector((x,y,0)),cq.Vector((0,0,1)), cfg.handRotation-cfg.colRot[-1]+270)
+    locs.append(loc)
     
-    if len(cfg.tClusterRot) == 2:
-        base = (base.faces(">Z").workplane(centerOption='CenterOfBoundBox')
-                    .transformed(rotate=(0,0,cfg.handRotation))
-                    .center(*LMThumbPos)
-                    .transformed(rotate=(0,0,270+cfg.tClusterRot[1]))
-                    .rect(baseLength*2,baseLength*2,(False,False))
-                    .cutThruAll()
-                    )
-    else:
-        base = (base.faces(">Z").workplane(centerOption='CenterOfBoundBox')
-                    .transformed(rotate=(0,0,cfg.handRotation))
-                    .center(*LMThumbPos)
-                    .transformed(rotate=(0,0,270+cfg.tClusterRot[-1]*2+cfg.tClusterRot[1]-1))
-                    .rect(baseLength*2,baseLength*2,(False,False))
-                    .cutThruAll()
-                    )
+    start =  base.faces(">Z").vertices("<<X[-3]").val().toTuple()
+    x = start[0] -cfg.handDistance/2
+    y = start[1]
+    loc = cq.Location(cq.Vector((x,y,0)), cq.Vector((0,0,1)), 90)
+    locs.append(loc)
     
-    base = cut(base, ">>Y[-3]", moveBy=(0,cfg.holeToEdge*1.2), baseLength=baseLength)
-    base = cut(base, "<<Y[-2]", moveBy=(0,cfg.holeToEdge*1.5), rotation=180, baseLength=baseLength)
-    base = cut(base, ">>X[-2]", moveBy=(0,cfg.holeToEdge*1.6), rotation=270+cfg.handRotation, baseLength=baseLength)
-    base = cut(base, ">>X[-2]", moveBy=(0,cfg.holeToEdge*1.5+cfg.startCorrection ),rotation=270+cfg.handRotation-1.75*cfg.handRotation, baseLength=baseLength)
-    base = (base.faces(">Z").vertices("<<X[-2]").workplane(centerOption="CenterOfMass")
-                .center(-cfg.handDistance/2,0)
-                .transformed(rotate=(0,90,0))
-                .split(keepTop=True)
-                )
+    base = base.pushPoints(locs).rect(baseLength*3,baseLength*3, (True,False)).cutThruAll()
+
+    locs = []
+
+    start =  base.faces(">Z").vertices("<<Y[-2]").val().toTuple()
+    x = start[0]
+    y = start[1] - cfg.holeToEdge
+    loc = cq.Location(cq.Vector((x,y,0)), cq.Vector(0,0,1), 180)
+    locs.append(loc)
+    
+    start =  base.faces(">Z").vertices(">>Y[-3]").val().toTuple()
+    x = start[0]
+    y = start[1] + cfg.holeToEdge
+    loc = cq.Location(cq.Vector((x,y,0)))
+    locs.append(loc)    
+    
+    base = base.pushPoints(locs).rect(baseLength*3,baseLength*3, (True,False)).cutThruAll()
     
     pointLow = base.faces(">Z").edges("<<Y[-2]").vals()[0].Vertices()[0].Center().toTuple()
     pointHigh = base.faces(">Z").edges("<<Y[-2]").vals()[0].Vertices()[1].Center().toTuple()
@@ -304,21 +281,22 @@ def GenerateCaseTop(plate, pCfg, cCfg):
 #     hSize = (14,14),
 #     rows =  3,
 #     cols = 5,
-#     keysPerCol= ( 3, 3, 3, 3, 2 ),
-#     stagger= ( 0, 2, 6, 2,-7+17),
-#     colRot= (0,0,0,0,0),
-#     tClusterRot= (36, 15),
-#     tClusterPos= (1,7),
-#     tClusterSpacing= 7,
-#     handRotation= 19,
-#     handDistance = 25,
-#     holeToEdge = 4,
+#     keysPerCol= ( 3, 3, 3, 3, 3 ),
+#     stagger  = ( 0, 2, 6, 2,-17),
+#     staggerX = ( 0, 0, 0, -0.25, -5),
+#     colRot= (0,0,0,4,15),
+#     tClusterRot=   (15, 0),
+#     tClusterSize = ( 1, 1.5),
+#     tClusterPos= (1,5),
+#     tClusterSpacing= 1,
+#     handRotation= 18,
+#     handDistance = 20,
+#     holeToEdge = 3,
 #     doFillet= True,
 #     filletSizeLarge= 5,
-#     filletSizeSmall= 3,
+#     filletSizeSmall= 5,
 #     startCorrection = 2.5,
-#     outerThumb1u5 = True,
-#     upperEdgeOffset = 5,
+#     upperEdgeOffset = 2.25,
 #     )
 
 # config_highProfileChoc = caseConfig(
@@ -331,5 +309,7 @@ def GenerateCaseTop(plate, pCfg, cCfg):
 #     )
 
 # plate = GeneratePlate(config_32)
+# plate = doFillet(plate, config_32)
 # show_object(plate)
-# GenerateCase(plate, config_highProfileChoc)
+# # case = GenerateCase(plate, config_highProfileChoc)
+# # show_object(case)
