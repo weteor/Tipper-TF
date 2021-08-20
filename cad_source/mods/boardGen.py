@@ -27,7 +27,9 @@ class keebConfig:
     holeToEdge: float
     filletSizeLarge: float
     filletSizeSmall: float
+    upperEdgeIndent: bool = True
     upperEdgeOffset: float = 0
+    lowerEdgeStraight: bool = False
     pass
 
 @dataclass
@@ -42,11 +44,14 @@ class caseConfig:
 
 
 def doFillet(obj, cfg):
-    ret = obj.edges("|Z and >Y").fillet(cfg.filletSizeLarge)
+    ret = obj
+    if not cfg.lowerEdgeStraight:
+        ret = ret.edges("|Z and >Y").fillet(cfg.filletSizeLarge)
     # ret = ret.edges("|Z").edges(">>X[-2] or <<X[-2]").fillet(cfg.filletSizeLarge)
+        ret = ret.faces("#Z and |Y").faces(">>Y[-2]").edges("|Z").fillet(cfg.filletSizeSmall)
     ret = ret.edges("|Z").edges(">X or <X").fillet(cfg.filletSizeLarge)
-    ret = ret.faces("#Z and |Y").faces(">>Y[-2]").edges("|Z").fillet(cfg.filletSizeSmall)
-    ret = ret.edges("|Z and <Y").fillet(cfg.filletSizeSmall)
+    if cfg.upperEdgeIndent:
+        ret = ret.edges("|Z and <Y").fillet(cfg.filletSizeSmall)
     return ret
     
     return ret
@@ -94,32 +99,35 @@ def GeneratePlate(cfg):
     
     base = base.pushPoints(locs).rect(*cfg.hSize).cutThruAll()
     
-    locs = []
+    if not cfg.lowerEdgeStraight:
+        locs = []
+        
+        start = (-cfg.spacing[0] + cfg.tClusterPos[0],-cfg.spacing[1] - cfg.tClusterPos[1]  )
+        angle = cfg.tClusterRot[0]
+        
+        x = ( start[0] +
+              (0.5 * cfg.hSize[1] * math.sin(math.radians(-angle+180))) +
+              (0.5 * (cfg.spacing[0]*cfg.tClusterSize[0]+cfg.tClusterSpacing) * math.sin(math.radians(-angle+90))) +
+              (cfg.holeToEdge * math.sin(math.radians(180+(cfg.tClusterRot[1]-cfg.tClusterRot[0])/2)))
+             )
+        
+        y = ( start[1] +
+              (0.5 * cfg.hSize[1] * math.cos(math.radians(-angle+180))) +
+              (0.5 * (cfg.spacing[0]*cfg.tClusterSize[0]+cfg.tClusterSpacing) * math.cos(math.radians(-angle+90))) +
+              (cfg.holeToEdge * math.cos(math.radians(180+(cfg.tClusterRot[1]-cfg.tClusterRot[0])/2)))
+             )
     
-    start = (-cfg.spacing[0] + cfg.tClusterPos[0],-cfg.spacing[1] - cfg.tClusterPos[1]  )
-    angle = cfg.tClusterRot[0]
+        loc = cq.Location(cq.Vector((x,y, 0)), cq.Vector((0,0,1)), 180+angle)
+        locs.append(loc) 
     
-    x = ( start[0] +
-          (0.5 * cfg.hSize[1] * math.sin(math.radians(-angle+180))) +
-          (0.5 * (cfg.spacing[0]*cfg.tClusterSize[0]+cfg.tClusterSpacing) * math.sin(math.radians(-angle+90))) +
-          (cfg.holeToEdge * math.sin(math.radians(180+(cfg.tClusterRot[1]-cfg.tClusterRot[0])/2)))
-         )
+        loc = cq.Location(cq.Vector((x,y, 0)), cq.Vector((0,0,1)), 270+cfg.tClusterRot[1])
+        locs.append(loc)
+        start = (x,y)
+        
+        base = base.pushPoints(locs).rect(baseLength*2,baseLength*2,(False,False)).cutThruAll()
     
-    y = ( start[1] +
-          (0.5 * cfg.hSize[1] * math.cos(math.radians(-angle+180))) +
-          (0.5 * (cfg.spacing[0]*cfg.tClusterSize[0]+cfg.tClusterSpacing) * math.cos(math.radians(-angle+90))) +
-          (cfg.holeToEdge * math.cos(math.radians(180+(cfg.tClusterRot[1]-cfg.tClusterRot[0])/2)))
-         )
+    base = base.rotate((0,0,0), (0,0,1), cfg.handRotation)
 
-    loc = cq.Location(cq.Vector((x,y, 0)), cq.Vector((0,0,1)), 180+angle)
-    locs.append(loc) 
-
-    loc = cq.Location(cq.Vector((x,y, 0)), cq.Vector((0,0,1)), 270+cfg.tClusterRot[1])
-    locs.append(loc)
-    start = (x,y)
-    
-    base = base.pushPoints(locs).rect(baseLength*2,baseLength*2,(False,False)).cutThruAll().rotate((0,0,0), (0,0,1), cfg.handRotation)
-    
     locs = []
     
     start =  base.faces(">Z").vertices(">>X[-3]").val().toTuple()
@@ -128,7 +136,9 @@ def GeneratePlate(cfg):
     loc = cq.Location(cq.Vector((x,y,0)),cq.Vector((0,0,1)), cfg.handRotation-cfg.colRot[-1]+270)
     locs.append(loc)
     
+
     start =  base.faces(">Z").vertices("<<X[-3]").val().toTuple()
+        
     x = start[0] -cfg.handDistance/2
     y = start[1]
     loc = cq.Location(cq.Vector((x,y,0)), cq.Vector((0,0,1)), 90)
@@ -138,7 +148,10 @@ def GeneratePlate(cfg):
 
     locs = []
 
-    start =  base.faces(">Z").vertices("<<Y[-2]").val().toTuple()
+    if cfg.lowerEdgeStraight:
+        start = base.faces(">Z").vertices("<<Y[-3]").val().toTuple()
+    else:
+        start =  base.faces(">Z").vertices("<<Y[-2]").val().toTuple()
     x = start[0]
     y = start[1] - cfg.holeToEdge
     loc = cq.Location(cq.Vector((x,y,0)), cq.Vector(0,0,1), 180)
@@ -151,7 +164,7 @@ def GeneratePlate(cfg):
     locs.append(loc)    
     
     base = base.pushPoints(locs).rect(baseLength*3,baseLength*3, (True,False)).cutThruAll()
-    
+
     pointLow = base.faces(">Z").edges("<<Y[-2]").vals()[0].Vertices()[0].Center().toTuple()
     pointHigh = base.faces(">Z").edges("<<Y[-2]").vals()[0].Vertices()[1].Center().toTuple()
     yHigh = base.faces(">Z").vertices(">Y").val().Center().toTuple()[1]+cfg.upperEdgeOffset
@@ -165,10 +178,11 @@ def GeneratePlate(cfg):
               (-baseLength, yHigh-height),
               (pointLow[0], yHigh-height)]
     
-    base = base.faces(">Z").workplane()
+    # base = base.faces(">Z").workplane()
     
-    base = base.center(base.plane.toLocalCoords(cq.Vector(0,0,0)).x, base.plane.toLocalCoords(cq.Vector(0,0,0)).y)
-    base = base.polyline(plstt).close().cutThruAll()
+    # base = base.center(base.plane.toLocalCoords(cq.Vector(0,0,0)).x, base.plane.toLocalCoords(cq.Vector(0,0,0)).y)
+    if cfg.upperEdgeIndent:
+        base = base.polyline(plstt).close().cutThruAll()
     
     plate = base.mirror(base.faces("<X"), union=True)
     
@@ -292,11 +306,11 @@ def GenerateCaseTop(plate, pCfg, cCfg):
 #     handRotation= 18,
 #     handDistance = 20,
 #     holeToEdge = 3,
-#     doFillet= True,
 #     filletSizeLarge= 5,
 #     filletSizeSmall= 5,
-#     startCorrection = 2.5,
+#     upperEdgeIndent = True,
 #     upperEdgeOffset = 2.25,
+#     lowerEdgeStraight = True,
 #     )
 
 # config_highProfileChoc = caseConfig(
@@ -309,7 +323,7 @@ def GenerateCaseTop(plate, pCfg, cCfg):
 #     )
 
 # plate = GeneratePlate(config_32)
-# plate = doFillet(plate, config_32)
+# # plate = doFillet(plate, config_32)
 # show_object(plate)
 # # case = GenerateCase(plate, config_highProfileChoc)
 # # show_object(case)
