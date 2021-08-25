@@ -1,4 +1,5 @@
 import cadquery as cq
+import math
 
 from importlib import reload
 import mods.boardGen as bg
@@ -47,36 +48,58 @@ pCfg = cfgs.config_32_ap
 cCfg = cfgs.config_highProfileChoc
 
 
-plate = bg.GeneratePlate(pCfg)
-# plate = bg.doFillet(plate,pCfg)
+plate, oLine_pcb = bg.GeneratePlate(pCfg)
 
-platef = bg.GeneratePlate(pCfg)
-platef = bg.doFillet(platef,pCfg)
-#case_top = bg.GenerateCaseTop(platec, pCfg, cCfg)
-case_bottom = bg.GenerateCase(platef, cCfg)
 
-def generateCt(plate, platef, cCfg, pCfg):
+def generateCt(plate, oLine_pcb, cCfg, pCfg):
     
     filletS = 0.4
-    filletL = 0.9
+    filletL = 1.5
     chamferS = 0.4
     
     tButtons = len(pCfg.tClusterRot)
     
-    outline = plate.faces(">Z").wires().first().val()
-    outline_verts = outline.Vertices()
-    outline = outline.fillet2D(pCfg.filletSizeLarge, outline_verts)
+    outline_case = plate.faces(">Z").wires().first().val()
+    # outline_verts = outline.Vertices()
+    # outline_case = outline.fillet2D(pCfg.filletSizeLarge, outline_verts)
     
-    ct = (cq.Workplane().add(outline).wires().first()
+    ct = (cq.Workplane().add(outline_case).wires().first().translate((0,0,cCfg.heightAbovePlate))
                         .toPending()
                         .offset2D((cCfg.wallThickness+cCfg.wallSafety))
-                        .extrude(cCfg.heightAbovePlate)
+                        .extrude(-(cCfg.heightAbovePlate+cCfg.switchClearance+cCfg.wallThickness+cCfg.clearanceSafety))
                 )
     
+    ct = ct.faces(">Z").wires().first().chamfer(3)
+    ct = ct.faces(">Z").wires().first().fillet(2)
+    ct = ct.faces("<<Z[-2]").edges(">Z").fillet(2)
+
+    outline = oLine_pcb.faces(">Z").wires().first()
+    cutout = ( cq.Workplane().add(outline)
+                             .toPending()
+                             .offset2D(cCfg.wallSafety)
+                             .extrude(-(cCfg.switchClearance+cCfg.bottomThickness+cCfg.clearanceSafety))
+                             )
+    ct = ct.cut(cutout)
     
+    # outline = plate_outline.faces(">Z").wires().first()
+    cutout = ( cq.Workplane().add(outline_case).translate((0,0,-(cCfg.switchClearance+cCfg.wallThickness+cCfg.clearanceSafety)))
+                                 .toPending()
+                                 .offset2D((cCfg.wallSafety))
+                                 .extrude(cCfg.bottomThickness)
+                                 )
+    bottomCase = ( cq.Workplane().add(outline_case).translate((0,0,-(cCfg.switchClearance+cCfg.wallThickness+cCfg.clearanceSafety)))
+                                 .toPending()
+                                 .offset2D((cCfg.wallSafety-0.1))
+                                 .extrude(cCfg.bottomThickness)
+                                 )
+    # bottomCase = bottomCase.edges("|Z").fillet(10)
+    ct = ct.cut(cutout)
     
-    pts = [platef.faces(">Z").wires().item(i+1).val().Center()
-            for i in range(platef.faces(">Z").wires().size()-1)]
+
+
+    pts = [plate.faces(">Z").wires().item(i+1).val().Center()
+    
+    for i in range(plate.faces(">Z").wires().size()-1)]
     
     
     
@@ -112,36 +135,88 @@ def generateCt(plate, platef, cCfg, pCfg):
     cutout = cutout.edges(invSelector).edges("|Z").fillet(filletL)
     
     ct = ct.cut(cutout.mirror("YZ",union=True))
-    
-    ct = ct.faces(">Z").wires().first().chamfer(3)
-    ct = ct.faces(">Z").wires().first().fillet(3)
+
     for i in range(6):
-        ct = ct.faces(">Z").wires().item(i+1).edges("%LINE").chamfer(chamferS)
-
-
+        ct = ct.faces(">Z").wires().item(i+1).chamfer(chamferS)
+        
+    locs = []
+    locsbc = []
+    locspcb = []
+    for i in range(ct.faces("-Z").faces("<<Z[-2]").size()):
+        loc = ct.faces("-Z").faces("<<Z[-2]").item(i).val().Center()
+        locsbc.append((loc.x, -loc.y))
+        locs.append(loc)
+        
+    ct = ct.pushPoints(locs).circle(cCfg.hDiameter/2).cutBlind(cCfg.hDepth)
+    # ct = ct.pushPoints(locs).circle(cCfg.hDiameter/2+1.3).cutBlind(1)
+        
+    # locs = []
+    # for i in range(7):
+    #     loc = ct.faces("-Z").faces("<<Z[-4]").item(i).val().Center()
+    #     locspcb.append((loc.x, -loc.y))
+    #     locs.append(loc)
     
-    return ct
+    # ct = ct.pushPoints(locs).circle(1).cutBlind(5)
+    
+    # cutout = cq.Workplane()
+    # cutout_ = cq.Workplane()
+    
+    # dist = pCfg.spacing[1] * 0.5 +5
+    # x = dist * math.sin(math.radians(180+(pCfg.handRotation + pCfg.tClusterRot[0])))
+    # y = dist * math.cos(math.radians(180+(pCfg.handRotation + pCfg.tClusterRot[0])))
+    
+    # loc = cq.Location((ptsSrtTX[0]),cq.Vector(0,0,1), -(pCfg.tClusterRot[tButtons-1-0] + pCfg.handRotation))
+    # cutout = ( cutout.pushPoints([loc])
+    #                  .rect(pCfg.spacing[0] * pCfg.tClusterSize[tButtons-1] + cCfg.cutoutExtra[1] * 2 ,
+    #                        pCfg.spacing[1] + cCfg.cutoutExtra[1] * 2)
+    #                  )
+    # cutout = cutout.extrude(cCfg.thumbCutout).translate((x,y,cCfg.heightAbovePlate-cCfg.thumbCutout))
+    
+    # loc = cq.Location((ptsSrtTX[1]),cq.Vector(0,0,1), -(pCfg.tClusterRot[tButtons-2] + pCfg.handRotation))
+    # cutout_ = ( cutout_.pushPoints([loc])
+    #                  .rect(pCfg.spacing[0] * pCfg.tClusterSize[tButtons-2] + cCfg.cutoutExtra[1] * 2,
+    #                        pCfg.spacing[1] + cCfg.cutoutExtra[1] * 2)
+    #                  )
+    # cutout_ = cutout_.extrude(cCfg.thumbCutout).translate((x,y,cCfg.heightAbovePlate-cCfg.thumbCutout))
+    # # cutout = cutout.extrude(cCfg.thumbCutout).translate((x,y,cCfg.heightAbovePlate-cCfg.thumbCutout))
+    
+    # cutout = cutout.union(cutout_)
+    # ct = ct.cut(cutout.mirror("YZ",union=True))
+
+    bottomCase = bottomCase.faces("<Z").workplane().pushPoints(locsbc).cboreHole(2,4,1)
+    
+    pcb = oLine_pcb.faces(">Z").wires().first().toPending().extrude(-pCfg.height_pcb)
+    pcb = pcb.translate((0,0,-pCfg.distance_pcb))
+    # pcb = pcb.faces("<Z").workplane().pushPoints(locspcb).circle(1).cutThruAll()
+        
     
 
-ct = generateCt(plate, platef, cCfg, pCfg)
+    # ct = ct.pushPoints(locs).circle(1).cutBlind(5)
+    
+    return ct, bottomCase, pcb
+    
 
-# ct = ct.faces(">Z").workplane().center(0-last.x,-21-last.y).circle(16.5).cutThruAll()
+ct, cb, pcb = generateCt(plate, oLine_pcb, cCfg, pCfg)
 
-# plate = plate.faces(">Z").workplane().center(0,-21).circle(16).cutThruAll()
+loc = cq.Location(cq.Vector((0,-20,0)))
 
-pcb_outline = plate.faces("<Z").wires().first().val()
-pcb = (cq.Workplane().add(pcb_outline).wires().first()
-                     .toPending()
-                     .offset2D(-(cCfg.wallThickness+pCfg.holeToEdge-2))
-                     .extrude(-pCfg.height_pcb)
-                     .translate((0,0,-(pCfg.height_plate+pCfg.height_mid)))
-                     )
+ct = ct.faces(">Z").workplane().pushPoints([loc]).hole(33)
+ct = ct.faces(">Z").wires(cq.selectors.NearestToPointSelector((0,-20,0))).chamfer(0.4)
+# plate = plate.faces(">Z").workplane().pushPoints([loc]).hole(32)
+
+# pcb_outline = plate.faces("<Z").wires().first().val()
+# pcb = (cq.Workplane().add(pcb_outline).wires().first()
+#                      .toPending()
+#                      .offset2D(-(cCfg.wallThickness+pCfg.holeToEdge-2))
+#                      .extrude(-pCfg.height_pcb)
+#                      .translate((0,0,-(pCfg.height_plate+pCfg.height_mid)))
+#                      )
 
 
 
 # case = (case.faces("<Z").wires().first())
 show_object(plate, name="Plate", options={"color":(30,30,30)})
-show_object(case_bottom, name="Case_bottom", options={"color":(198,196,188)})
+show_object(cb, name="Case_bottom", options={"color":(198,196,188)})
 show_object(ct, name="Case_top", options={"color":(100,196,188)})
 # debug(case.faces("<Z").wires().first().chamfer(1))
 # show_object(pcb, name="pcb", options={"color":(30,30,30)})
