@@ -6,7 +6,6 @@ mx_spacing = (19.05, 19.05)
 
 config_36 = keebConfig(
     height_plate = 1.2,
-    distance_pcb = 2.2,
     height_pcb = 1.6,
     spacing = choc_spacing,
     hSize = (14,14),
@@ -29,7 +28,6 @@ config_36 = keebConfig(
 
 config_36_mx = keebConfig(
     height_plate = 1.2,
-    distance_pcb = 2.2,
     height_pcb = 1.6,
     spacing = mx_spacing,
     hSize = (14,14),
@@ -52,7 +50,6 @@ config_36_mx = keebConfig(
 
 config_32_g = keebConfig(
     height_plate = 1.2,
-    distance_pcb = 2.2,
     height_pcb = 1.6,
     spacing = choc_spacing,
     hSize = (14,14),
@@ -76,7 +73,6 @@ config_32_g = keebConfig(
 
 config_36_test = keebConfig(
     height_plate = 1.2,
-    distance_pcb = 2.2,
     height_pcb = 1.6,
     spacing = choc_spacing,
     hSize = (14,14),
@@ -100,7 +96,6 @@ config_36_test = keebConfig(
 
 config_32 = keebConfig(
     height_plate = 1.2,
-    distance_pcb = 2.2,
     height_pcb = 1.6,
     spacing = choc_spacing,
     hSize = (14,14),
@@ -124,7 +119,6 @@ config_32 = keebConfig(
 
 config_32_ap = keebConfig(
     height_plate = 1.2,
-    distance_pcb = 2.2,
     height_pcb = 1.6,
     spacing = choc_spacing,
     hSize = (14,14),
@@ -149,7 +143,6 @@ config_32_ap = keebConfig(
     )
 config_32_ap1mx = keebConfig(
     height_plate = 1.2,
-    distance_pcb = 2.2,
     height_pcb = 1.6,
     spacing = mx_spacing,
     hSize = (14,14),
@@ -174,7 +167,6 @@ config_32_ap1mx = keebConfig(
     )
 config_32_ap1 = keebConfig(
     height_plate = 1.2,
-    distance_pcb = 2.2,
     height_pcb = 1.6,
     spacing = choc_spacing,
     hSize = (14,14),
@@ -200,7 +192,6 @@ config_32_ap1 = keebConfig(
 
 config_32_aps = keebConfig(
     height_plate = 1.2,
-    distance_pcb = 2.2,
     height_pcb = 1.6,
     spacing = choc_spacing,
     hSize = (14,14),
@@ -233,8 +224,10 @@ config_lowProfile = caseConfig  (
     heightAbovePlate = 0,
     cutoutExtra = (1, 1),
     thumbCutout = 0,
+    sHoleDiameter = 2.2,
     hDiameter = 3.2,
     hDepth = 5,
+    switchPlateToPcb = 2.2,
     )
 
 config_highProfileChoc = caseConfig(
@@ -246,6 +239,8 @@ config_highProfileChoc = caseConfig(
     heightAbovePlate = 4.5,
     cutoutExtra = (0.25, 0.25 ),
     thumbCutout = 2,
+    sHoleDiameter = 2.2,
     hDiameter = 3.2,
     hDepth = 5,
+    switchPlateToPcb = 2.2,
     )

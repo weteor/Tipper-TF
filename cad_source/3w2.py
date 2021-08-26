@@ -74,7 +74,7 @@ def generateCt(plate, oLine_pcb, cCfg, pCfg):
     ct = ct.faces("<<Z[-2]").edges(">Z").fillet(2)
 
     outline = oLine_pcb.faces(">Z").wires().first()
-    cutout = ( cq.Workplane().add(outline)
+    cutout = ( cq.Workplane().add(outline).translate((0,0,-cCfg.switchPlateToPcb))
                              .toPending()
                              .offset2D(cCfg.wallSafety)
                              .extrude(-(cCfg.switchClearance+cCfg.bottomThickness+cCfg.clearanceSafety))
@@ -116,7 +116,7 @@ def generateCt(plate, oLine_pcb, cCfg, pCfg):
         loc = cq.Location((high+low)*0.5, cq.Vector(0,0,1), -pCfg.handRotation+pCfg.colRot[pCfg.cols-1-i])
         locs.append(loc)
     
-    cutout = (cq.Workplane()
+    cutout = (cq.Workplane("XY", origin=(0,0,-cCfg.switchPlateToPcb))
                 .pushPoints(locs)
                 .rect(pCfg.spacing[0]+cCfg.cutoutExtra[0]*2, 
                       (keysCol) * pCfg.spacing[1] + cCfg.cutoutExtra[1]*2))
@@ -127,8 +127,8 @@ def generateCt(plate, oLine_pcb, cCfg, pCfg):
                          .rect(pCfg.spacing[0] * pCfg.tClusterSize[tButtons-1-i] + cCfg.cutoutExtra[1] * 2,
                                pCfg.spacing[1] + cCfg.cutoutExtra[1] * 2)
                          )
-    cutout = cutout.extrude(cCfg.heightAbovePlate)
-    
+    cutout = cutout.extrude(cCfg.heightAbovePlate+cCfg.switchPlateToPcb)
+
     selector = cq.selectors.BoxSelector( (-300,0,-1), (0,15,cCfg.heightAbovePlate+1))
     invSelector = cq.selectors.InverseSelector(selector)
     cutout = cutout.edges(selector).edges("|Z").fillet(filletS)
@@ -141,13 +141,31 @@ def generateCt(plate, oLine_pcb, cCfg, pCfg):
         
     locs = []
     locsbc = []
-    locspcb = []
     for i in range(ct.faces("-Z").faces("<<Z[-2]").size()):
         loc = ct.faces("-Z").faces("<<Z[-2]").item(i).val().Center()
         locsbc.append((loc.x, -loc.y))
         locs.append(loc)
         
     ct = ct.pushPoints(locs).circle(cCfg.hDiameter/2).cutBlind(cCfg.hDepth)
+    bottomCase = bottomCase.faces("<Z").workplane().pushPoints(locsbc).cboreHole(cCfg.sHoleDiameter,2*cCfg.sHoleDiameter,1)
+    
+    locs = []
+    loc = ct.faces("-Z").faces("<<Z[-3]").faces(">Y").first().val().Center()
+    locs.append((loc.x-2.5, -(loc.y -8)))
+    
+    loc = ct.faces("-Z").faces("<<Z[-3]").faces(">>Y[-2]").first().val().Center()
+    locs.append((loc.x-10.5, -(loc.y -10.5)))
+    
+    loc = ct.faces("-Z").faces("<<Z[-3]").faces("<<Y[-2]").item(1).val().Center()
+    locs.append((loc.x-4, -(loc.y +10)))
+    
+    loc = ct.faces("-Z").faces("<<Z[-3]").faces("<Y").first().val().Center()
+    locs.append((loc.x+12.1, -(loc.y +29.6)))
+    
+    ct = ct.faces("-Z").faces("<<Z[-4]").workplane().pushPoints(locs).circle(cCfg.hDiameter/2).mirrorY().cutBlind(-cCfg.hDepth)
+    
+    
+    
     # ct = ct.pushPoints(locs).circle(cCfg.hDiameter/2+1.3).cutBlind(1)
         
     # locs = []
@@ -183,11 +201,11 @@ def generateCt(plate, oLine_pcb, cCfg, pCfg):
     # cutout = cutout.union(cutout_)
     # ct = ct.cut(cutout.mirror("YZ",union=True))
 
-    bottomCase = bottomCase.faces("<Z").workplane().pushPoints(locsbc).cboreHole(2,4,1)
+    
     
     pcb = oLine_pcb.faces(">Z").wires().first().toPending().extrude(-pCfg.height_pcb)
-    pcb = pcb.translate((0,0,-pCfg.distance_pcb))
-    # pcb = pcb.faces("<Z").workplane().pushPoints(locspcb).circle(1).cutThruAll()
+    pcb = pcb.translate((0,0,-cCfg.switchPlateToPcb))
+    pcb = pcb.faces("<Z").workplane().pushPoints(locs).circle(cCfg.sHoleDiameter/2).mirrorY().cutThruAll()
         
     
 
@@ -211,15 +229,19 @@ ct = ct.faces(">Z").wires(cq.selectors.NearestToPointSelector((0,-20,0))).chamfe
 #                      .extrude(-pCfg.height_pcb)
 #                      .translate((0,0,-(pCfg.height_plate+pCfg.height_mid)))
 #                      )
+outline_case = plate.faces(">Z")
+combine = (cq.Workplane().add(outline_case).wires().toPending()
+                        .extrude(-20)
+                        )
 
-
+combine = combine.intersect(pcb)
 
 # case = (case.faces("<Z").wires().first())
-show_object(plate, name="Plate", options={"color":(30,30,30)})
+# show_object(plate, name="Plate", options={"color":(30,30,30)})
 show_object(cb, name="Case_bottom", options={"color":(198,196,188)})
 show_object(ct, name="Case_top", options={"color":(100,196,188)})
 # debug(case.faces("<Z").wires().first().chamfer(1))
-# show_object(pcb, name="pcb", options={"color":(30,30,30)})
+show_object(pcb, name="pcb", options={"color":(30,30,30)})
 # ct_ = ct.faces("<Z").wires().first()
 
 

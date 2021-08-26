@@ -9,7 +9,6 @@ import math
 class keebConfig:
     height_plate: float
     height_pcb: float
-    distance_pcb: float
     spacing: tuple 
     hSize : tuple
     rows : int
@@ -42,8 +41,10 @@ class caseConfig:
     heightAbovePlate: float
     cutoutExtra: tuple
     thumbCutout : float
+    sHoleDiameter : float
     hDiameter : float
     hDepth : float
+    switchPlateToPcb : float 
     pass
 
 
