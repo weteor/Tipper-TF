@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name Weteor)(type KiCad)(uri /home/matthias/Data/proj/3W6Uni/pcb/part_library/weteor.pretty)(options "")(descr ""))
+)
