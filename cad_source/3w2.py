@@ -237,7 +237,7 @@ combine = (cq.Workplane().add(outline_case).wires().toPending()
 combine = combine.intersect(pcb)
 
 # case = (case.faces("<Z").wires().first())
-# show_object(plate, name="Plate", options={"color":(30,30,30)})
+show_object(combine, name="Combine", options={"color":(30,30,30)})
 show_object(cb, name="Case_bottom", options={"color":(198,196,188)})
 show_object(ct, name="Case_top", options={"color":(100,196,188)})
 # debug(case.faces("<Z").wires().first().chamfer(1))
