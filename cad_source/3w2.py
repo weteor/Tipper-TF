@@ -1,5 +1,6 @@
 import cadquery as cq
 import math
+import pickle
 
 from importlib import reload
 import mods.boardGen as bg
@@ -16,7 +17,9 @@ mc = reload(mc)
 bg = reload(bg)
 cfgs = reload(cfgs)
 
-
+#tapping term auf 170 mit ignore_mod_tap_interrupt, so hab ich es am laufen, fühlt sich echt natural an bis auf das leichte delay beim tippen, da kommt man aber schnell drum rum
+#[12:38 AM]
+#und combo term 27ms weil rolling fingers
 def generateKeeb(pCfg, cCfg):
     plate = bg.GeneratePlate(pCfg)
     midlayer = bg.GenerateMidLayer(plate, pCfg)
@@ -47,9 +50,7 @@ def GenerateFromOutline(obj, fillet = 0, extrude = 0):
 pCfg = cfgs.config_32_ap
 cCfg = cfgs.config_highProfileChoc
 
-
 plate, oLine_pcb = bg.GeneratePlate(pCfg)
-
 
 def generateCt(plate, oLine_pcb, cCfg, pCfg):
     
@@ -136,6 +137,13 @@ def generateCt(plate, oLine_pcb, cCfg, pCfg):
     for i in range(6):
         ct = ct.faces(">Z").wires().item(i+1).chamfer(chamferS)
         
+    pos = ct.faces("-Z").faces("<Z").edges("<Y").vertices("<X").val().toTuple()
+    ct = (ct.faces("-Z").faces(">Z")
+                        .pushPoints([(pos[0]-7, pos[1]+34.25)])
+                        .circle(3.5).mirrorY()
+                        .extrude(-(cCfg.switchClearance+cCfg.clearanceSafety))
+                        )
+
     locs = []
     locsbc = []
     for i in range(ct.faces("-Z").faces("<<Z[-2]").size()):
@@ -148,58 +156,19 @@ def generateCt(plate, oLine_pcb, cCfg, pCfg):
     
     
     locs = []
-    loc = ct.faces("-Z").faces("<<Z[-4]").faces(">Y").first().val().Center()
-    locs.append((loc.x-2, -(loc.y -(9.5+cCfg.wallSafety))))
+    loc = ct.faces("-Z").faces("<<Z[-3]").faces(">Y").first().val().Center()
+    locs.append((loc.x-10.5, -(loc.y -(cCfg.wallSafety))))
     
-    loc = ct.faces("-Z").faces("<<Z[-4]").faces(">>Y[-2]").first().val().Center()
+    loc = ct.faces("-Z").faces("<<Z[-3]").faces(">>Y[-2]").first().val().Center()
     locs.append((loc.x-10.5, -(loc.y -(10.5+cCfg.wallSafety))))
     
-    loc = ct.faces("-Z").faces("<<Z[-4]").faces("<<Y[-2]").item(1).val().Center()
-    locs.append((loc.x-4.5, -(loc.y +(10+cCfg.wallSafety))))
+    loc = ct.faces("-Z").faces("<<Z[-3]").faces("<<Y[-2]").item(1).val().Center()
+    locs.append((loc.x+8.5, -(loc.y +(4+cCfg.wallSafety))))
     
-    loc = ct.faces("-Z").faces("<<Z[-4]").faces("<Y").item(1).val().Center()
-    locs.append((loc.x+12.1, -(loc.y +(29.2+cCfg.wallSafety))))
+    loc = ct.faces("-Z").faces("<<Z[-3]").faces("<Y").item(1).val().Center()
+    locs.append((loc.x+3.75, -(loc.y +(6+cCfg.wallSafety))))
     
     ct = ct.faces("-Z").faces("<<Z[-3]").workplane().pushPoints(locs).circle(cCfg.hDiameter/2).mirrorY().cutBlind(-cCfg.hDepth)
-    
-    
-    
-    # ct = ct.pushPoints(locs).circle(cCfg.hDiameter/2+1.3).cutBlind(1)
-        
-    # locs = []
-    # for i in range(7):
-    #     loc = ct.faces("-Z").faces("<<Z[-4]").item(i).val().Center()
-    #     locspcb.append((loc.x, -loc.y))
-    #     locs.append(loc)
-    
-    # ct = ct.pushPoints(locs).circle(1).cutBlind(5)
-    
-    # cutout = cq.Workplane()
-    # cutout_ = cq.Workplane()
-    
-    # dist = pCfg.spacing[1] * 0.5 +5
-    # x = dist * math.sin(math.radians(180+(pCfg.handRotation + pCfg.tClusterRot[0])))
-    # y = dist * math.cos(math.radians(180+(pCfg.handRotation + pCfg.tClusterRot[0])))
-    
-    # loc = cq.Location((ptsSrtTX[0]),cq.Vector(0,0,1), -(pCfg.tClusterRot[tButtons-1-0] + pCfg.handRotation))
-    # cutout = ( cutout.pushPoints([loc])
-    #                  .rect(pCfg.spacing[0] * pCfg.tClusterSize[tButtons-1] + cCfg.cutoutExtra[1] * 2 ,
-    #                        pCfg.spacing[1] + cCfg.cutoutExtra[1] * 2)
-    #                  )
-    # cutout = cutout.extrude(cCfg.thumbCutout).translate((x,y,cCfg.heightAbovePlate-cCfg.thumbCutout))
-    
-    # loc = cq.Location((ptsSrtTX[1]),cq.Vector(0,0,1), -(pCfg.tClusterRot[tButtons-2] + pCfg.handRotation))
-    # cutout_ = ( cutout_.pushPoints([loc])
-    #                  .rect(pCfg.spacing[0] * pCfg.tClusterSize[tButtons-2] + cCfg.cutoutExtra[1] * 2,
-    #                        pCfg.spacing[1] + cCfg.cutoutExtra[1] * 2)
-    #                  )
-    # cutout_ = cutout_.extrude(cCfg.thumbCutout).translate((x,y,cCfg.heightAbovePlate-cCfg.thumbCutout))
-    # # cutout = cutout.extrude(cCfg.thumbCutout).translate((x,y,cCfg.heightAbovePlate-cCfg.thumbCutout))
-    
-    # cutout = cutout.union(cutout_)
-    # ct = ct.cut(cutout.mirror("YZ",union=True))
-
-    
     
     pcb = oLine_pcb.faces(">Z").wires().first().toPending().extrude(-pCfg.height_pcb)
     pcb = pcb.translate((0,0,-cCfg.switchPlateToPcb))
@@ -241,6 +210,28 @@ ct = ct.edges("|Y").fillet(1)
 
 ct = ct.faces("+Y").faces(">>Y[-2]").workplane().pushPoints([loc]).rect(15,6).cutBlind(-10+cCfg.wallSafety, 6)
 
+t = cq.Workplane().pushPoints([(0,0)]).rect(31,41)
+ct = ( ct.faces("-Z").faces("<<Z[-3]").workplane()
+          .add(t).translate((0,-12.5,-cCfg.switchPlateToPcb)).toPending().extrude(5.2)
+          )
+ct = (ct.faces("-Z")
+        .faces("<<Z[-3]")
+        .faces(cq.selectors.NearestToPointSelector((0,0,0))).tag("theFace")
+        .rect(35, 45)
+        # .rect(35, 26)
+        .extrude(-5.2)
+        )
+ct = ct.faces(tag="theFace").rect(35,16.5,(True,False)).cutBlind(-5.2)
+ct = ct.faces(tag="theFace").rect(24,30,(True,False)).cutBlind(-5.2)
+ct = ct.faces(tag="theFace").rect(35,-45,(True,False)).cutBlind(-5.2)
+ct = ct.faces(tag="theFace").rect(6,-22.5,(True,False)).extrude(-5.2)
+ct = ct.faces(tag="theFace").rect(35,-10,(True,False)).extrude(-5.2)
+ct = ct.faces(tag="theFace").rect(35,-5,(True,False)).cutBlind(-5.2)
+ct = ct.faces(tag="theFace").rect(31,41).cutBlind(-5.2)
+#ct = ct.faces(tag="theFace").rect(30,40).extrude(-5.2)
+ct = ct.faces(tag="theFace").rect(30,40).extrude(2)
+# ct = ct.faces(tag="theFace").rect(35,14).cutBlind(-5.2)
+
 pos = combine.faces(">Z").edges("|X").edges(">>Y[-3]").vertices("<X").val().Center()
 
 locs = []
@@ -251,9 +242,14 @@ locs.append((locs[-1][0]+10*math.sin(math.radians(180+70)), locs[-1][1]+10*math.
 locs.append((0,locs[-1][1]))
 
 combine = combine.faces(">Z").workplane().polyline(locs).mirrorY().extrude(-pCfg.height_pcb)
+combine = combine.cut(ct)
 
+t = cq.Workplane().pushPoints([(0,-35)]).rect(17.55,23.35)
+ct = ( ct.faces("-Z").faces("<<Z[-3]").workplane()
+          .add(t).translate((0,-12.5,-cCfg.switchPlateToPcb)).toPending().extrude(4.2)
+          )
 show_object(combine, name="Combine", options={"color":(30,30,30)})
-show_object(cb, name="Case_bottom", options={"color":(198,196,188)})
+#show_object(cb, name="Case_bottom", options={"color":(198,196,188)})
 show_object(ct, name="Case_top", options={"color":(100,196,188)})
-# show_object(pcb, name="pcb", options={"color":(30,30,30)})
+show_object(pcb, name="pcb", options={"color":(30,30,30)})
 

@@ -219,14 +219,15 @@ def GeneratePlate(cfg, withCaseHoles=None):
     
     
     locs = []
+    roti = 40
     pos = plate.faces(">Z").edges("%LINE").edges(">Y").vertices("<X").val().toTuple()
-    locs.append((pos[0]+10, pos[1]))
-    locs.append((locs[-1][0] + 9*math.sin(math.radians(180-rot)),
-                 locs[-1][1] + 9*math.cos(math.radians(180-rot))))
-    locs.append((locs[-1][0] + 5*math.sin(math.radians(90)), 
-                 locs[-1][1] + 5*math.cos(math.radians(90))))
-    locs.append((locs[-1][0] + 9*math.sin(math.radians(((rot)))),
-                 locs[-1][1] + 9*math.cos(math.radians(((rot))))))
+    locs.append((pos[0]-7, pos[1]-7))
+    locs.append((locs[-1][0] + 9*math.sin(math.radians(90+5.5)),
+                 locs[-1][1] + 9*math.cos(math.radians(90+5.5))))
+    locs.append((locs[-1][0] + 5*math.sin(math.radians(90-roti+5.5)), 
+                 locs[-1][1] + 5*math.cos(math.radians(90-roti+5.5))))
+    locs.append((locs[-1][0] + 9*math.sin(math.radians(5.5)),
+                 locs[-1][1] + 9*math.cos(math.radians(5.5))))
     locs.append((locs[-1][0], locs[-1][1]+100))
     outline_pcb = outline_pcb.polyline(locs).close().mirrorY().cutThruAll()
     
@@ -244,16 +245,16 @@ def GeneratePlate(cfg, withCaseHoles=None):
     
     locs = []
     pos = plate.faces(">Z").edges("<Y").vertices("<X").val().toTuple()
-    locs.append((pos[0]+1, pos[1]))
-    locs.append((locs[-1][0] + 9*math.sin(math.radians((cfg.handRotation+cfg.tClusterRot[0]))),
-                 locs[-1][1] + 9*math.cos(math.radians((cfg.handRotation+cfg.tClusterRot[0])))))
-    locs.append((locs[-1][0] + 5, locs[-1][1]))
-    locs.append((locs[-1][0] + 9*math.sin(math.radians(180-(cfg.handRotation+cfg.tClusterRot[0]))),
-                 locs[-1][1] + 9*math.cos(math.radians(180-(cfg.handRotation+cfg.tClusterRot[0])))))
-    locs.append((locs[-1][0], locs[-1][1] -20))
-    locs.append((locs[-1][0] -30, locs[-1][1]))
-    outline_pcb = outline_pcb.polyline(locs).close().mirrorY().cutThruAll()
-    # outline_pcb = outline_pcb.faces(">Z").wires().first().toPending().extrude(1)
+    locs.append((pos[0]-5, pos[1]+29))
+    # locs.append((locs[-1][0] + 9*math.sin(math.radians((cfg.handRotation+cfg.tClusterRot[0]))),
+    #              locs[-1][1] + 9*math.cos(math.radians((cfg.handRotation+cfg.tClusterRot[0])))))
+    # locs.append((locs[-1][0] + 5, locs[-1][1]))
+    # locs.append((locs[-1][0] + 9*math.sin(math.radians(180-(cfg.handRotation+cfg.tClusterRot[0]))),
+    #              locs[-1][1] + 9*math.cos(math.radians(180-(cfg.handRotation+cfg.tClusterRot[0])))))
+    # locs.append((locs[-1][0], locs[-1][1] -20))
+    # locs.append((locs[-1][0] -30, locs[-1][1]))
+
+    outline_pcb = outline_pcb.pushPoints(locs).circle(2.5).mirrorY().cutThruAll()
 
     
     return plate, outline_pcb
@@ -355,7 +356,6 @@ def GenerateCaseTop(plate, pCfg, cCfg):
 
 # config_32 = keebConfig(
 #     height_plate = 1.2,
-#     distance_pcb = 2,
 #     height_pcb = 1.6,
 #     spacing = (18,17),
 #     hSize = (14,14),
@@ -381,15 +381,17 @@ def GenerateCaseTop(plate, pCfg, cCfg):
 
 # config_highProfileChoc = caseConfig(
 #     switchClearance = 5.2,
-#     clearanceSafety = 1,
-#     wallSafety = .5,
-#     wallThickness = 4,
+#     clearanceSafety = 1.5,
+#     wallSafety = 2,
+#     wallThickness = 2,
 #     bottomThickness = 2,
-#     heightAbovePlate = 5,
+#     heightAbovePlate = 4.5,
 #     cutoutExtra = (0.25, 0.25 ),
 #     thumbCutout = 2,
+#     sHoleDiameter = 2.2,
 #     hDiameter = 3.2,
 #     hDepth = 5,
+#     switchPlateToPcb = 2.2,
 #     )
 
 # plate, outl_pcb = GeneratePlate(config_32, False)

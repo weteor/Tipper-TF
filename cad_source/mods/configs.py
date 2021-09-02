@@ -119,7 +119,7 @@ config_32 = keebConfig(
 
 config_32_ap = keebConfig(
     height_plate = 1.2,
-    height_pcb = 1.6,
+    height_pcb = 1.2,
     spacing = choc_spacing,
     hSize = (14,14),
     rows =  3,
@@ -159,10 +159,10 @@ config_lowProfile = caseConfig  (
 
 config_highProfileChoc = caseConfig(
     switchClearance = 5.2,
-    clearanceSafety = 1,
+    clearanceSafety = 2.7,
     wallSafety = 2,
     wallThickness = 2.5,
-    bottomThickness = 2,
+    bottomThickness = 1.5,
     heightAbovePlate = 4.5,
     cutoutExtra = (0.25, 0.25 ),
     thumbCutout = 2,
