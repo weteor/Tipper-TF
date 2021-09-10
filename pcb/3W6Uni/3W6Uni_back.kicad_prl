@@ -1,6 +1,6 @@
 {
   "board": {
-    "active_layer": 31,
+    "active_layer": 0,
     "active_layer_preset": "",
     "auto_track_width": true,
     "hidden_nets": [],
@@ -63,11 +63,11 @@
       35,
       36
     ],
-    "visible_layers": "ffcffff_ffffffff",
-    "zone_display_mode": 1
+    "visible_layers": "ffdffff_ffffffff",
+    "zone_display_mode": 0
   },
   "meta": {
-    "filename": "3W6Uni.kicad_prl",
+    "filename": "3W6Uni_back.kicad_prl",
     "version": 3
   },
   "project": {

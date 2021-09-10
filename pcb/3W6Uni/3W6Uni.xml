@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>/home/matthias/Data/proj/3W6Uni/pcb_nightlyTest/3W6Uni/3W6Uni.kicad_sch</source>
-    <date>Do 02 Sep 2021 23:49:43 CEST</date>
+    <source>/home/matthias/Data/proj/3W6Uni/pcb/3W6Uni/3W6Uni.kicad_sch</source>
+    <date>Fr 03 Sep 2021 14:37:59 CEST</date>
     <tool>Eeschema (5.99.0-12147-g317fae2098)</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -26,7 +26,7 @@
   <components>
     <comp ref="BT1">
       <value>Battery_Cell</value>
-      <footprint>Weteor:JST GH 2Pin</footprint>
+      <footprint>Weteor:Molex PicoBlade 2Pin smt tht</footprint>
       <libsource lib="Device" part="Battery_Cell" description="Single-cell battery"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="3W6Uni.kicad_sch"/>
@@ -495,7 +495,7 @@
     </comp>
     <comp ref="J2">
       <value>BL_CONN</value>
-      <footprint>Weteor:JST Gh Molex PicoBlade 4Pin</footprint>
+      <footprint>Weteor:Molex PicoBlade 4Pin smt tht</footprint>
       <libsource lib="Connector_Generic" part="Conn_01x04" description="Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="3W6Uni.kicad_sch"/>

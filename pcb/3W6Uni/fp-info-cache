@@ -1,4 +1,4 @@
-19256188296459191
+19252928189129167
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -83062,20 +83062,6 @@ SOD-323
 2
 2
 Weteor
-JST GH 2Pin
-
-
-0
-6
-3
-Weteor
-JST Gh Molex PicoBlade 4Pin
-
-
-0
-10
-5
-Weteor
 Kailh_Choc_1.5u
 
 
@@ -83125,6 +83111,20 @@ Micro_Push_Button_3x6x2.5mm
 2
 2
 Weteor
+Molex PicoBlade 2Pin smt tht
+
+
+0
+6
+3
+Weteor
+Molex PicoBlade 4Pin smt tht
+
+
+0
+10
+5
+Weteor
 Plate_Hole
 
 
@@ -83151,13 +83151,6 @@ RotEncoderE11
 
 0
 5
-5
-Weteor
-RotEncoderE11_SMD
-
-
-0
-7
 5
 Weteor
 TP4056_SOP-8-PP
@@ -83201,13 +83194,6 @@ pimoroni_Trackball
 0
 5
 5
-Weteor
-switch_MSK-12C02_smd
-
-
-0
-7
-3
 Weteor
 trackball_choc_combi
 
