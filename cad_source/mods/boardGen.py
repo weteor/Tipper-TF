@@ -136,8 +136,8 @@ def GeneratePlate(cfg, withCaseHoles=None):
     locs = []
     
     start =  base.faces(">Z").vertices(">>X[-3]").val().toTuple()
-    x = start[0] + cfg.holeToEdge*1.5 * math.sin(math.radians(cfg.handRotation-cfg.colRot[-1]+90))
-    y = start[1] + cfg.holeToEdge*1.5 * math.cos(math.radians(cfg.handRotation-cfg.colRot[-1]+90))
+    x = start[0] + cfg.holeToEdge*1.2 * math.sin(math.radians(cfg.handRotation-cfg.colRot[-1]+90))
+    y = start[1] + cfg.holeToEdge*1.2 * math.cos(math.radians(cfg.handRotation-cfg.colRot[-1]+90))
     loc = cq.Location(cq.Vector((x,y,0)),cq.Vector((0,0,1)), cfg.handRotation-cfg.colRot[-1]+270)
     locs.append(loc)
     
@@ -208,12 +208,12 @@ def GeneratePlate(cfg, withCaseHoles=None):
     pos = plate.faces(">Z").vertices("<<X[-2]").val().toTuple()
     locs.append((pos[0] + 15*math.sin(math.radians(90+cfg.handRotation)),
                  pos[1] + 15*math.cos(math.radians(90+cfg.handRotation))))
-    locs.append((locs[-1][0] + 9*math.sin(math.radians(rot+cfg.handRotation)),
-                 locs[-1][1] + 9*math.cos(math.radians(rot+cfg.handRotation))))
-    locs.append((locs[-1][0] + 5*math.sin(math.radians(90+cfg.handRotation)), 
-                 locs[-1][1] + 5*math.cos(math.radians(90+cfg.handRotation))))
-    locs.append((locs[-1][0] + 9*math.sin(math.radians((180-(rot)+cfg.handRotation))),
-                 locs[-1][1] + 9*math.cos(math.radians((180-(rot)+cfg.handRotation)))))
+    locs.append((locs[-1][0] + 11*math.sin(math.radians(rot+cfg.handRotation)),
+                 locs[-1][1] + 11*math.cos(math.radians(rot+cfg.handRotation))))
+    locs.append((locs[-1][0] + 8*math.sin(math.radians(90+cfg.handRotation)), 
+                 locs[-1][1] + 8*math.cos(math.radians(90+cfg.handRotation))))
+    locs.append((locs[-1][0] + 11*math.sin(math.radians((180-(rot)+cfg.handRotation))),
+                 locs[-1][1] + 11*math.cos(math.radians((180-(rot)+cfg.handRotation)))))
     locs.append((locs[-1][0]-100, locs[-1][1]))
     outline_pcb = plate.polyline(locs).close().mirrorY().cutThruAll()
     
@@ -221,7 +221,7 @@ def GeneratePlate(cfg, withCaseHoles=None):
     locs = []
     roti = 40
     pos = plate.faces(">Z").edges("%LINE").edges(">Y").vertices("<X").val().toTuple()
-    locs.append((pos[0]-7, pos[1]-7))
+    locs.append((pos[0]-7, pos[1]-8.5))
     locs.append((locs[-1][0] + 9*math.sin(math.radians(90+5.5)),
                  locs[-1][1] + 9*math.cos(math.radians(90+5.5))))
     locs.append((locs[-1][0] + 5*math.sin(math.radians(90-roti+5.5)), 
