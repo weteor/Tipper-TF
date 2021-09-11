@@ -260,19 +260,30 @@ ct = ct.faces(tag="theFace").rect(31,41).cutBlind(-5.2)
 
 ct = ct.faces("<Z").wires().first().chamfer(0.5)
 
+thumbEdgeShift = 10
+cutLength = 20
+zOffset = cq.Vector(0,0,0)
 
 sel=cq.selectors.BoxSelector((-40,-30,5),(0,-80, 2))
-wires = ct.faces(sel).edges(">>Z[-3]")
+#wires = ct.faces(sel).edges(">>Z[-6]")
+wires = ct.faces(sel).edges(">>Z[-5]")
 
 sel = cq.selectors.NearestToPointSelector((-50,-40,0))
 startedge = ct.faces(">Z").wires(sel).edges("<<X[-2]")
-p11 = startedge.vertices("<X").val().Center()
-p12 = startedge.vertices(">X").val().Center()
-p21 = wires.edges("<<X[-1]").vertices("<X").val().Center()
-p22 = cq.Vector(p21.x + math.sin(math.radians(270+21)), p21.y + math.cos(math.radians(270+21)), p21.z )
+ct = ct.faces(">Z").wires(sel).chamfer(0.3)
+sel = cq.selectors.NearestToPointSelector((50,-40,0))
+ct = ct.faces(">Z").wires(sel).chamfer(0.3)
 
-Intpnt = getInterceptPoint2D(p11,p12,p21,p22)
-contactLow = wires.edges("<<X[-1]").vertices("<X").val().Center()
+
+p11  = startedge.vertices("<X").val().Center()
+p12  = startedge.vertices(">X").val().Center()
+p11s = p11+cq.Vector(thumbEdgeShift*math.sin(math.radians(90+21)), thumbEdgeShift*math.sin(math.radians(90+21)))
+p12s = p12+cq.Vector(thumbEdgeShift*math.sin(math.radians(90+21)), thumbEdgeShift*math.sin(math.radians(90+21)))
+p21 = wires.edges("<<X[-1]").vertices("<X").val().Center() + zOffset
+p22 = cq.Vector(p21.x + math.sin(math.radians(270+21)), p21.y + math.cos(math.radians(270+21)), p21.z ) + zOffset
+
+Intpnt = getInterceptPoint2D(p11s,p12s,p21,p22)
+contactLow = wires.edges("<<X[-1]").vertices("<X").val().Center() + zOffset
 contactHigh = p11 + cq.Vector(28.7*math.sin(math.radians(90+21)),28.7*math.cos(math.radians(90+21)),0)
 
 verts = []
@@ -288,12 +299,34 @@ for i in range(len(verts)):
 cutout = cq.Workplane(cq.Wire.assembleEdges(wirelist)).wires().first().toPending().extrude(5).mirror("YZ", union=True)
 ct = ct.cut(cutout)
 
+
+verts = []
+verts.append(cq.Vector(Intpnt[0], Intpnt[1], p21.z))
+verts.append(p11)
+verts.append(p11- cq.Vector(cutLength*math.sin(math.radians(90+21)),cutLength*math.cos(math.radians(90+21)),-2) - zOffset)  
+verts.append(cq.Vector(Intpnt[0], Intpnt[1], p21.z) - cq.Vector(cutLength*math.sin(math.radians(90+21)),cutLength*math.cos(math.radians(90+21)),-2) - zOffset)
+# verts.append(ct.faces(sel).vertices(">Z").vertices("<Y").val().Center() - cq.Vector(60*math.sin(math.radians(90+21)),60*math.cos(math.radians(90+21))))
+
+wirelist = []
+for i in range(len(verts)):
+    wirelist.append(cq.Edge.makeLine(verts[i], verts[(i+1)%len(verts)]))
+    
+debug(wirelist)
+cutout = cq.Workplane(cq.Wire.assembleEdges(wirelist)).wires().first().toPending().extrude(5).mirror("YZ", union=True)
+ct = ct.cut(cutout)
+
+
+
 sel = cq.selectors.NearestToPointSelector((-20,-50,0))
 startedge = ct.faces(">Z").wires(sel).edges(">>X[-2]")
+ct = ct.faces(">Z").wires(sel).chamfer(0.3)
+sel = cq.selectors.NearestToPointSelector((20,-50,0))
+ct = ct.faces(">Z").wires(sel).chamfer(0.3)
+
 p11 = startedge.vertices("<X").val().Center()
 p12 = startedge.vertices(">X").val().Center()
-p21 = wires.edges("<<X[-1]").vertices("<X").val().Center()
-p22 = wires.edges("<<X[-1]").vertices(">X").val().Center()
+p21 = wires.edges("<<X[-1]").vertices("<X").val().Center() + zOffset
+p22 = wires.edges("<<X[-1]").vertices(">X").val().Center() + zOffset
 
 Intpnt = cq.Vector(*getInterceptPoint2D(p11,p12,p21,p22),p21.z)
 
@@ -324,8 +357,8 @@ cutout = cq.Workplane(cq.Wire.assembleEdges(wirelist)).wires().first().toPending
 ct = ct.cut(cutout)
 
 
-p21 = wires.edges("<<X[-3]").vertices("<X").val().Center()
-p22 = wires.edges("<<X[-3]").vertices(">X").val().Center()
+p21 = wires.edges("<<X[-3]").vertices("<X").val().Center() + zOffset
+p22 = wires.edges("<<X[-3]").vertices(">X").val().Center() + zOffset
 
 verts = []
 verts.append(p21)
@@ -345,40 +378,24 @@ contactHigh = p11
 
 wirelist = []
 # wirelist.append(wires.edges("<<X[-2]").val())
-wirelist.append(cq.Edge.makeLine(wires.edges("<<X[-2]").vertices(">X").val().Center(), 
-                                 wires.edges("<<X[-2]").vertices("<X").val().Center()))
-wirelist.append(cq.Edge.makeLine(wires.edges("<<X[-2]").vertices("<X").val().Center(), p11))
-wirelist.append(cq.Edge.makeLine(p11, wires.edges("<<X[-2]").vertices(">X").val().Center()))
+wirelist.append(cq.Edge.makeLine(wires.edges("<<X[-2]").vertices(">X").val().Center() + zOffset, 
+                                 wires.edges("<<X[-2]").vertices("<X").val().Center() + zOffset))
+wirelist.append(cq.Edge.makeLine(wires.edges("<<X[-2]").vertices("<X").val().Center() + zOffset, p11))
+wirelist.append(cq.Edge.makeLine(p11, wires.edges("<<X[-2]").vertices(">X").val().Center() + zOffset))
 
 cutout = cq.Workplane(cq.Wire.assembleEdges(wirelist)).wires().first().toPending().extrude(5).mirror("YZ", union=True)
 ct = ct.cut(cutout)
 
 wirelist = []
 # wirelist.append(wires.edges("<<X[-2]").val())
-wirelist.append(cq.Edge.makeLine(wires.edges("<<X[-2]").vertices(">X").val().Center(), 
-                                 wires.edges("<<X[-2]").vertices("<X").val().Center()))
-wirelist.append(wires.edges("<<X[-2]").val())
+wirelist.append(cq.Edge.makeLine(wires.edges("<<X[-2]").vertices(">X").val().Center() + zOffset, 
+                                 wires.edges("<<X[-2]").vertices("<X").val().Center() + zOffset))
+wirelist.append(wires.edges("<<X[-2]").val().translate(zOffset))
 
 cutout = cq.Workplane(cq.Wire.assembleEdges(wirelist)).wires().first().toPending().extrude(5).mirror("YZ", union=True)
 ct = ct.cut(cutout)
 
-sel = cq.selectors.BoxSelector((-70,-30,5),(-60,-80, 2))
 
-
-verts = []
-verts.append(ct.faces(sel).vertices("<Z").val().Center())
-verts.append(ct.faces(sel).vertices(">Z").vertices(">Y").val().Center())
-verts.append(ct.faces(sel).vertices(">Z").vertices(">Y").val().Center()- cq.Vector(20*math.sin(math.radians(90+21)),20*math.cos(math.radians(90+21)),-2))
-verts.append(ct.faces(sel).vertices("<Z").val().Center() - cq.Vector(20*math.sin(math.radians(90+21)),20*math.cos(math.radians(90+21)),-2))
-# verts.append(ct.faces(sel).vertices(">Z").vertices("<Y").val().Center() - cq.Vector(60*math.sin(math.radians(90+21)),60*math.cos(math.radians(90+21))))
-
-wirelist = []
-for i in range(len(verts)):
-    wirelist.append(cq.Edge.makeLine(verts[i], verts[(i+1)%len(verts)]))
-    
-debug(wirelist)
-cutout = cq.Workplane(cq.Wire.assembleEdges(wirelist)).wires().first().toPending().extrude(5).mirror("YZ", union=True)
-ct = ct.cut(cutout)
 
 # midpnt = ct.faces("<<Y[-13]").edges(">Z").vertices("<X").val().Center()
 
