@@ -74,7 +74,13 @@ plate, oLine_pcb = bg.GeneratePlate(pCfg)
 
 def generateCt(plate, oLine_pcb, cCfg, pCfg):
     
-    topExtra = 4
+    topExtra = 6
+    topAngle = 2.2
+    topOffset = cq.Vector(0,0,1.25)
+    
+    # topExtra = 6
+    # topAngle = 0
+    # topOffsetY = 0
     
     filletS = 0.3
     filletL = 1
@@ -95,8 +101,9 @@ def generateCt(plate, oLine_pcb, cCfg, pCfg):
     gndFace = ct.faces(">Z").tag("gndFace")
     
     ct = ct.faces(tag="gndFace").wires().first().toPending().extrude(topExtra)
-    merger = cq.Workplane().transformed(offset=(0,0,cCfg.heightAbovePlate)).rect(300,150).extrude(-20).rotateAboutCenter((1,0,0), 1.5)
+    merger = cq.Workplane().transformed(offset=(topOffset.x,topOffset.y,cCfg.heightAbovePlate+topOffset.z)).rect(300,300).extrude(-20).rotateAboutCenter((1,0,0), topAngle)
     
+    # debug(ct.intersect(merger))
     ct = ct.intersect(merger)
     
     selector = cq.selectors.BoxSelector( (-300,-20,-1), (+300,-100,20))
@@ -224,7 +231,8 @@ ct = ct.cut(cutout)
 
 
 # ct = ct.faces(">Z").workplane().pushPoints([loc]).hole(33)
-ct = ct.faces(tag="Top").wires(cq.selectors.NearestToPointSelector((0,-20,0))).chamfer(0.25)
+sel = cq.selectors.NearestToPointSelector((0,0,8))
+ct = ct.faces(sel).wires(cq.selectors.NearestToPointSelector((0,-20,0))).chamfer(0.27)
 plate = plate.faces(">Z").workplane().pushPoints([loc]).hole(32)
 
 outline_case = plate.faces(">Z")
@@ -236,9 +244,11 @@ combine = combine.intersect(pcb)
 
 
 locc = ct.faces("+Y").faces(">>Y[-2]").val().Center()
-loc = ((0, -(locc.z + cCfg.switchPlateToPcb), -cCfg.wallThickness))
+
+# loc = ((0, -(locc.z + cCfg.switchPlateToPcb)-0.8, -cCfg.wallThickness))
+loc = ((0, -(locc.z + cCfg.switchPlateToPcb)+0.67, -cCfg.wallThickness))
 ct = ct.faces("+Y").faces(">>Y[-2]").workplane().pushPoints([loc]).rect(12,6).cutBlind(cCfg.wallThickness)
-ct = ct.edges("|Y").fillet(1)
+ct = ct.edges("|Y").fillet(1.5)
 
 ct = ct.faces("+Y").faces(">>Y[-2]").workplane().pushPoints([loc]).rect(15,6).cutBlind(-10+cCfg.wallSafety, 6)
 
