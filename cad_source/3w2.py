@@ -133,6 +133,16 @@ def generateCt(plate, oLine_pcb, cCfg, pCfg):
                                  .offset2D((cCfg.wallSafety-0.1))
                                  .extrude(cCfg.bottomThickness)
                                  )
+    wirelipi = ( cq.Workplane().add(outline_case).translate((0,0,-(cCfg.switchClearance+cCfg.clearanceSafety)))
+                                 .toPending()
+                                 .offset2D((cCfg.wallSafety))
+                                 )
+    
+    wirelipo = ( cq.Workplane().add(outline_case).translate((0,0,-(cCfg.switchClearance+cCfg.clearanceSafety)))
+                               .toPending()
+                               .offset2D((cCfg.wallSafety-0.75))
+                               )
+    lip = cq.Workplane().add(cq.Face.makeFromWires(wirelipo.wires().val(), [wirelipi.wires().val()])).wires().toPending().extrude(cCfg.switchClearance+cCfg.bottomThickness+cCfg.clearanceSafety)
     # bottomCase = bottomCase.edges("|Z").fillet(10)
     ct = ct.cut(cutout)
 
@@ -198,33 +208,34 @@ def generateCt(plate, oLine_pcb, cCfg, pCfg):
     
     locs = []
     loc = ct.faces("-Z").faces("<<Z[-3]").faces(">Y").first().val().Center()
-    locs.append((loc.x-10.5, -(loc.y -(cCfg.wallSafety))))
+    # locs.append((loc.x-10.5, -(loc.y -(cCfg.wallSafety))))
+    locs.append((loc.x-10.497, -(loc.y-12.482)))
     
     loc = ct.faces("-Z").faces("<<Z[-3]").faces(">>Y[-2]").first().val().Center()
-    locs.append((loc.x-10.5, -(loc.y -(10.5+cCfg.wallSafety))))
+    locs.append((loc.x-9.390, -(loc.y-1.220)))
     
     loc = ct.faces("-Z").faces("<<Z[-3]").faces("<<Y[-2]").item(1).val().Center()
-    locs.append((loc.x+8.5, -(loc.y +(4+cCfg.wallSafety))))
+    locs.append((loc.x+12.441, -(loc.y +6.649)))
     
     loc = ct.faces("-Z").faces("<<Z[-3]").faces("<Y").item(1).val().Center()
     locs.append((loc.x+3.75, -(loc.y +(6+cCfg.wallSafety))))
-    
     ct = ct.faces("-Z").faces("<<Z[-3]").workplane().pushPoints(locs).circle(cCfg.hDiameter/2).mirrorY().cutBlind(-cCfg.hDepth)
     
     pcb = oLine_pcb.faces(">Z").wires().first().toPending().extrude(-pCfg.height_pcb)
     pcb = pcb.translate((0,0,-cCfg.switchPlateToPcb))
     pcb = pcb.faces("<Z").workplane().pushPoints(locs).circle(cCfg.sHoleDiameter/2).mirrorY().cutThruAll()
-        
+    
+    ct = ct.union(lip)
     
 
     # ct = ct.pushPoints(locs).circle(1).cutBlind(5)
     
-    return ct, bottomCase, pcb
+    return ct, bottomCase, pcb, lip
     
 
-ct, cb, pcb = generateCt(plate, oLine_pcb, cCfg, pCfg)
+ct, cb, pcb, lip = generateCt(plate, oLine_pcb, cCfg, pCfg)
 
-loc = cq.Location(cq.Vector((0,-20,20)))
+loc = cq.Location(cq.Vector((0,-19.8,20)))
 
 cutout = cq.Workplane().pushPoints([loc]).circle(16.5).extrude(-50)
 ct = ct.cut(cutout)
@@ -250,11 +261,11 @@ loc = ((0, -(locc.z + cCfg.switchPlateToPcb)+0.67, -cCfg.wallThickness))
 ct = ct.faces("+Y").faces(">>Y[-2]").workplane().pushPoints([loc]).rect(12,6).cutBlind(cCfg.wallThickness)
 ct = ct.edges("|Y").fillet(1.5)
 
-ct = ct.faces("+Y").faces(">>Y[-2]").workplane().pushPoints([loc]).rect(15,6).cutBlind(-10+cCfg.wallSafety, 6)
+ct = ct.faces("+Y").faces(">>Y[-2]").workplane().pushPoints([loc]).rect(20,8).cutBlind(-12+cCfg.wallSafety, 8)
 
 t = cq.Workplane().pushPoints([(0,0)]).rect(31,41)
 ct = ( ct.faces("-Z").faces("<<Z[-3]").workplane()
-          .add(t).translate((0,-12.5,-cCfg.switchPlateToPcb)).toPending().extrude(5.2)
+          .add(t).translate((0,-12.5+0.2,-cCfg.switchPlateToPcb)).toPending().extrude(5.2)
           )
 ct = (ct.faces("-Z")
         .faces("<<Z[-3]")

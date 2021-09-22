@@ -1,0 +1,1902 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "3W6Uni"
+Date "2021-03-18"
+Rev "v1.0"
+Comp ""
+Comment1 "Licensed under CERN-OHL-P v2"
+Comment2 "(c) weteor"
+Comment3 "2021"
+Comment4 ""
+$EndDescr
+$Comp
+L Switch:SW_Push SW1
+U 1 1 60540A9B
+P 1325 950
+F 0 "SW1" H 1325 1235 50  0000 C CNN
+F 1 "SW_Push" H 1325 1144 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 1325 1150 50  0001 C CNN
+F 3 "~" H 1325 1150 50  0001 C CNN
+	1    1325 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW5
+U 1 1 60541030
+P 2175 950
+F 0 "SW5" H 2175 1235 50  0000 C CNN
+F 1 "SW_Push" H 2175 1144 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 2175 1150 50  0001 C CNN
+F 3 "~" H 2175 1150 50  0001 C CNN
+	1    2175 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW8
+U 1 1 60541F01
+P 3025 950
+F 0 "SW8" H 3025 1235 50  0000 C CNN
+F 1 "SW_Push" H 3025 1144 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 3025 1150 50  0001 C CNN
+F 3 "~" H 3025 1150 50  0001 C CNN
+	1    3025 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW11
+U 1 1 605421B6
+P 3875 950
+F 0 "SW11" H 3875 1235 50  0000 C CNN
+F 1 "SW_Push" H 3875 1144 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 3875 1150 50  0001 C CNN
+F 3 "~" H 3875 1150 50  0001 C CNN
+	1    3875 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW15
+U 1 1 60542827
+P 4725 950
+F 0 "SW15" H 4725 1235 50  0000 C CNN
+F 1 "SW_Push" H 4725 1144 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 4725 1150 50  0001 C CNN
+F 3 "~" H 4725 1150 50  0001 C CNN
+	1    4725 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW2
+U 1 1 605447E4
+P 1325 1650
+F 0 "SW2" H 1325 1935 50  0000 C CNN
+F 1 "SW_Push" H 1325 1844 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 1325 1850 50  0001 C CNN
+F 3 "~" H 1325 1850 50  0001 C CNN
+	1    1325 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW6
+U 1 1 60544CAF
+P 2175 1650
+F 0 "SW6" H 2175 1935 50  0000 C CNN
+F 1 "SW_Push" H 2175 1844 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 2175 1850 50  0001 C CNN
+F 3 "~" H 2175 1850 50  0001 C CNN
+	1    2175 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW9
+U 1 1 60545054
+P 3025 1650
+F 0 "SW9" H 3025 1935 50  0000 C CNN
+F 1 "SW_Push" H 3025 1844 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 3025 1850 50  0001 C CNN
+F 3 "~" H 3025 1850 50  0001 C CNN
+	1    3025 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW12
+U 1 1 60545480
+P 3875 1650
+F 0 "SW12" H 3875 1935 50  0000 C CNN
+F 1 "SW_Push" H 3875 1844 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 3875 1850 50  0001 C CNN
+F 3 "~" H 3875 1850 50  0001 C CNN
+	1    3875 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW16
+U 1 1 60545989
+P 4725 1650
+F 0 "SW16" H 4725 1935 50  0000 C CNN
+F 1 "SW_Push" H 4725 1844 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 4725 1850 50  0001 C CNN
+F 3 "~" H 4725 1850 50  0001 C CNN
+	1    4725 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW3
+U 1 1 6054660D
+P 1325 2350
+F 0 "SW3" H 1325 2635 50  0000 C CNN
+F 1 "SW_Push" H 1325 2544 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 1325 2550 50  0001 C CNN
+F 3 "~" H 1325 2550 50  0001 C CNN
+	1    1325 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW7
+U 1 1 60546A57
+P 2175 2350
+F 0 "SW7" H 2175 2635 50  0000 C CNN
+F 1 "SW_Push" H 2175 2544 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 2175 2550 50  0001 C CNN
+F 3 "~" H 2175 2550 50  0001 C CNN
+	1    2175 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW10
+U 1 1 60546EAD
+P 3025 2350
+F 0 "SW10" H 3025 2635 50  0000 C CNN
+F 1 "SW_Push" H 3025 2544 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 3025 2550 50  0001 C CNN
+F 3 "~" H 3025 2550 50  0001 C CNN
+	1    3025 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW13
+U 1 1 60547334
+P 3875 2350
+F 0 "SW13" H 3875 2635 50  0000 C CNN
+F 1 "SW_Push" H 3875 2544 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 3875 2550 50  0001 C CNN
+F 3 "~" H 3875 2550 50  0001 C CNN
+	1    3875 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW17
+U 1 1 60547842
+P 4725 2350
+F 0 "SW17" H 4725 2635 50  0000 C CNN
+F 1 "SW_Push" H 4725 2544 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 4725 2550 50  0001 C CNN
+F 3 "~" H 4725 2550 50  0001 C CNN
+	1    4725 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D_Small D1
+U 1 1 605863C8
+P 1625 1050
+F 0 "D1" V 1671 980 50  0000 R CNN
+F 1 "D" V 1580 980 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 1625 1050 50  0001 C CNN
+F 3 "~" V 1625 1050 50  0001 C CNN
+	1    1625 1050
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D7
+U 1 1 6058FA23
+P 3325 1050
+F 0 "D7" V 3371 980 50  0000 R CNN
+F 1 "D" V 3280 980 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 3325 1050 50  0001 C CNN
+F 3 "~" V 3325 1050 50  0001 C CNN
+	1    3325 1050
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D10
+U 1 1 60590715
+P 4175 1050
+F 0 "D10" V 4221 980 50  0000 R CNN
+F 1 "D" V 4130 980 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 4175 1050 50  0001 C CNN
+F 3 "~" V 4175 1050 50  0001 C CNN
+	1    4175 1050
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1525 950  1625 950 
+Wire Wire Line
+	2375 950  2475 950 
+Wire Wire Line
+	925  1150 1625 1150
+Wire Wire Line
+	1625 1150 2475 1150
+Connection ~ 1625 1150
+Wire Wire Line
+	2475 1150 3325 1150
+Connection ~ 2475 1150
+Connection ~ 3325 1150
+Wire Wire Line
+	3325 1150 4175 1150
+$Comp
+L Device:D_Small D14
+U 1 1 6059B0EC
+P 5025 1050
+F 0 "D14" V 5071 980 50  0000 R CNN
+F 1 "D" V 4980 980 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 5025 1050 50  0001 C CNN
+F 3 "~" V 5025 1050 50  0001 C CNN
+	1    5025 1050
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4175 1150 5025 1150
+Connection ~ 4175 1150
+Wire Wire Line
+	5025 950  4925 950 
+Wire Wire Line
+	4175 950  4075 950 
+Wire Wire Line
+	3325 950  3225 950 
+Wire Wire Line
+	1025 850  1025 950 
+Wire Wire Line
+	1025 950  1125 950 
+Wire Wire Line
+	1875 850  1875 950 
+Wire Wire Line
+	1875 950  1975 950 
+Wire Wire Line
+	2725 850  2725 950 
+Wire Wire Line
+	2725 950  2825 950 
+Wire Wire Line
+	3575 850  3575 950 
+Wire Wire Line
+	3575 950  3675 950 
+Wire Wire Line
+	4425 850  4425 950 
+Wire Wire Line
+	4425 950  4525 950 
+$Comp
+L Device:D_Small D2
+U 1 1 6054D13F
+P 1625 1750
+F 0 "D2" V 1671 1680 50  0000 R CNN
+F 1 "D" V 1580 1680 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 1625 1750 50  0001 C CNN
+F 3 "~" V 1625 1750 50  0001 C CNN
+	1    1625 1750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D5
+U 1 1 6054D60D
+P 2475 1750
+F 0 "D5" V 2521 1680 50  0000 R CNN
+F 1 "D" V 2430 1680 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 2475 1750 50  0001 C CNN
+F 3 "~" V 2475 1750 50  0001 C CNN
+	1    2475 1750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D8
+U 1 1 6054DA2D
+P 3325 1750
+F 0 "D8" V 3371 1680 50  0000 R CNN
+F 1 "D" V 3280 1680 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 3325 1750 50  0001 C CNN
+F 3 "~" V 3325 1750 50  0001 C CNN
+	1    3325 1750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D11
+U 1 1 6054DF0C
+P 4175 1750
+F 0 "D11" V 4221 1680 50  0000 R CNN
+F 1 "D" V 4130 1680 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 4175 1750 50  0001 C CNN
+F 3 "~" V 4175 1750 50  0001 C CNN
+	1    4175 1750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D15
+U 1 1 6054E423
+P 5025 1750
+F 0 "D15" V 5071 1680 50  0000 R CNN
+F 1 "D" V 4980 1680 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 5025 1750 50  0001 C CNN
+F 3 "~" V 5025 1750 50  0001 C CNN
+	1    5025 1750
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1125 1650 1025 1650
+Wire Wire Line
+	1025 1650 1025 950 
+Connection ~ 1025 950 
+Wire Wire Line
+	1525 1650 1625 1650
+Wire Wire Line
+	2375 1650 2475 1650
+Wire Wire Line
+	3225 1650 3325 1650
+Wire Wire Line
+	4075 1650 4175 1650
+Wire Wire Line
+	4925 1650 5025 1650
+Wire Wire Line
+	1975 1650 1875 1650
+Wire Wire Line
+	1875 1650 1875 950 
+Connection ~ 1875 950 
+Wire Wire Line
+	2825 1650 2725 1650
+Wire Wire Line
+	2725 1650 2725 950 
+Connection ~ 2725 950 
+Wire Wire Line
+	3675 1650 3575 1650
+Wire Wire Line
+	3575 1650 3575 950 
+Connection ~ 3575 950 
+Wire Wire Line
+	4525 1650 4425 1650
+Wire Wire Line
+	4425 1650 4425 950 
+Connection ~ 4425 950 
+Wire Wire Line
+	925  1850 1625 1850
+Connection ~ 1625 1850
+Wire Wire Line
+	1625 1850 2475 1850
+Connection ~ 2475 1850
+Wire Wire Line
+	2475 1850 3325 1850
+Connection ~ 3325 1850
+Wire Wire Line
+	3325 1850 4175 1850
+Connection ~ 4175 1850
+Wire Wire Line
+	4175 1850 5025 1850
+$Comp
+L Device:D_Small D3
+U 1 1 60565A0C
+P 1625 2450
+F 0 "D3" V 1671 2380 50  0000 R CNN
+F 1 "D" V 1580 2380 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 1625 2450 50  0001 C CNN
+F 3 "~" V 1625 2450 50  0001 C CNN
+	1    1625 2450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D6
+U 1 1 60565FFB
+P 2475 2450
+F 0 "D6" V 2521 2380 50  0000 R CNN
+F 1 "D" V 2430 2380 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 2475 2450 50  0001 C CNN
+F 3 "~" V 2475 2450 50  0001 C CNN
+	1    2475 2450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D9
+U 1 1 60566389
+P 3325 2450
+F 0 "D9" V 3371 2380 50  0000 R CNN
+F 1 "D" V 3280 2380 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 3325 2450 50  0001 C CNN
+F 3 "~" V 3325 2450 50  0001 C CNN
+	1    3325 2450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D12
+U 1 1 605674CE
+P 4175 2450
+F 0 "D12" V 4221 2380 50  0000 R CNN
+F 1 "D" V 4130 2380 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 4175 2450 50  0001 C CNN
+F 3 "~" V 4175 2450 50  0001 C CNN
+	1    4175 2450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D16
+U 1 1 60567963
+P 5025 2450
+F 0 "D16" V 5071 2380 50  0000 R CNN
+F 1 "D" V 4980 2380 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 5025 2450 50  0001 C CNN
+F 3 "~" V 5025 2450 50  0001 C CNN
+	1    5025 2450
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1525 2350 1625 2350
+Wire Wire Line
+	2375 2350 2475 2350
+Wire Wire Line
+	3225 2350 3325 2350
+Wire Wire Line
+	4075 2350 4175 2350
+Wire Wire Line
+	4925 2350 5025 2350
+Wire Wire Line
+	4525 2350 4425 2350
+Wire Wire Line
+	4425 2350 4425 1650
+Connection ~ 4425 1650
+Wire Wire Line
+	3675 2350 3575 2350
+Wire Wire Line
+	3575 2350 3575 1650
+Connection ~ 3575 1650
+Wire Wire Line
+	2825 2350 2725 2350
+Wire Wire Line
+	2725 2350 2725 1650
+Connection ~ 2725 1650
+Wire Wire Line
+	1975 2350 1875 2350
+Wire Wire Line
+	1875 2350 1875 1650
+Connection ~ 1875 1650
+Wire Wire Line
+	1125 2350 1025 2350
+Wire Wire Line
+	1025 2350 1025 1650
+Connection ~ 1025 1650
+Wire Wire Line
+	925  2550 1625 2550
+Connection ~ 1625 2550
+Wire Wire Line
+	1625 2550 2475 2550
+Connection ~ 2475 2550
+Wire Wire Line
+	2475 2550 3325 2550
+Connection ~ 3325 2550
+Wire Wire Line
+	3325 2550 4175 2550
+Connection ~ 4175 2550
+Wire Wire Line
+	4175 2550 5025 2550
+$Comp
+L Device:D_Small D17
+U 1 1 6057BDDC
+P 5025 3150
+F 0 "D17" V 5071 3080 50  0000 R CNN
+F 1 "D" V 4980 3080 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 5025 3150 50  0001 C CNN
+F 3 "~" V 5025 3150 50  0001 C CNN
+	1    5025 3150
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D13
+U 1 1 6057C146
+P 4175 3150
+F 0 "D13" V 4221 3080 50  0000 R CNN
+F 1 "D" V 4130 3080 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 4175 3150 50  0001 C CNN
+F 3 "~" V 4175 3150 50  0001 C CNN
+	1    4175 3150
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4925 3050 5025 3050
+Wire Wire Line
+	4075 3050 4175 3050
+Connection ~ 4175 3250
+Wire Wire Line
+	4175 3250 5025 3250
+Wire Wire Line
+	3675 3050 3575 3050
+Wire Wire Line
+	3575 3050 3575 2350
+Connection ~ 3575 2350
+Wire Wire Line
+	4525 3050 4425 3050
+Wire Wire Line
+	4425 3050 4425 2350
+Connection ~ 4425 2350
+$Comp
+L Connector:USB_C_Receptacle_USB2.0 J1
+U 1 1 605D5301
+P 9500 4725
+F 0 "J1" H 9607 5592 50  0000 C CNN
+F 1 "USB_C Main" H 9607 5501 50  0000 C CNN
+F 2 "Weteor:USB-C-12-Pin-MidMount" H 9650 4725 50  0001 C CNN
+F 3 "https://www.usb.org/sites/default/files/documents/usb_type-c.zip" H 9650 4725 50  0001 C CNN
+	1    9500 4725
+	-1   0    0    -1  
+$EndComp
+NoConn ~ 8900 5225
+NoConn ~ 8900 5325
+$Comp
+L Device:R_Small R5
+U 1 1 606AC204
+P 8650 4325
+F 0 "R5" V 8600 4475 50  0000 C CNN
+F 1 "5.1k" V 8600 4175 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 8650 4325 50  0001 C CNN
+F 3 "~" H 8650 4325 50  0001 C CNN
+	1    8650 4325
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:Polyfuse F1
+U 1 1 606B1D6A
+P 8650 4125
+F 0 "F1" V 8550 4275 50  0000 C CNN
+F 1 "500mA" V 8550 4025 50  0000 C CNN
+F 2 "Fuse:Fuse_1206_3216Metric" H 8700 3925 50  0001 L CNN
+F 3 "~" H 8650 4125 50  0001 C CNN
+	1    8650 4125
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8500 4125 8200 4125
+Wire Wire Line
+	8800 4125 8900 4125
+Wire Wire Line
+	8900 4325 8750 4325
+$Comp
+L Device:R_Small R6
+U 1 1 606C9B85
+P 8650 4425
+F 0 "R6" V 8700 4575 50  0000 C CNN
+F 1 "5.1k" V 8700 4275 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 8650 4425 50  0001 C CNN
+F 3 "~" H 8650 4425 50  0001 C CNN
+	1    8650 4425
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8750 4425 8900 4425
+Wire Wire Line
+	8550 4325 8450 4325
+Wire Wire Line
+	8450 4325 8450 4375
+Wire Wire Line
+	8450 4425 8550 4425
+Wire Wire Line
+	8450 4375 8350 4375
+Wire Wire Line
+	8350 4375 8350 4425
+Connection ~ 8450 4375
+Wire Wire Line
+	8450 4375 8450 4425
+$Comp
+L power:GND #PWR016
+U 1 1 606EB4AD
+P 8350 4425
+F 0 "#PWR016" H 8350 4175 50  0001 C CNN
+F 1 "GND" H 8355 4252 50  0000 C CNN
+F 2 "" H 8350 4425 50  0001 C CNN
+F 3 "" H 8350 4425 50  0001 C CNN
+	1    8350 4425
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR017
+U 1 1 606EC714
+P 9500 5625
+F 0 "#PWR017" H 9500 5375 50  0001 C CNN
+F 1 "GND" H 9505 5452 50  0000 C CNN
+F 2 "" H 9500 5625 50  0001 C CNN
+F 3 "" H 9500 5625 50  0001 C CNN
+	1    9500 5625
+	1    0    0    -1  
+$EndComp
+NoConn ~ 9800 5625
+$Comp
+L power:+5V #PWR015
+U 1 1 6070FE77
+P 8200 4125
+F 0 "#PWR015" H 8200 3975 50  0001 C CNN
+F 1 "+5V" V 8215 4253 50  0000 L CNN
+F 2 "" H 8200 4125 50  0001 C CNN
+F 3 "" H 8200 4125 50  0001 C CNN
+	1    8200 4125
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1975 4225 1425 4225
+Wire Wire Line
+	1425 4425 1975 4425
+$Comp
+L Device:Crystal_GND24_Small Y1
+U 1 1 60BD82AE
+P 1425 4325
+F 0 "Y1" V 1379 4469 50  0000 L CNN
+F 1 "16MHZ" V 1470 4469 50  0000 L CNN
+F 2 "Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm" H 1425 4325 50  0001 C CNN
+F 3 "~" H 1425 4325 50  0001 C CNN
+	1    1425 4325
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C_Small C1
+U 1 1 60C4CE7A
+P 1125 4225
+F 0 "C1" V 1075 4075 50  0000 C CNN
+F 1 "22pF" V 1175 4125 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 1125 4225 50  0001 C CNN
+F 3 "~" H 1125 4225 50  0001 C CNN
+	1    1125 4225
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C_Small C2
+U 1 1 60C4DD21
+P 1125 4425
+F 0 "C2" V 1075 4275 50  0000 C CNN
+F 1 "22pF" V 1175 4325 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 1125 4425 50  0001 C CNN
+F 3 "~" H 1125 4425 50  0001 C CNN
+	1    1125 4425
+	0    1    1    0   
+$EndComp
+Connection ~ 1425 4425
+Connection ~ 1425 4225
+Wire Wire Line
+	1025 4225 925  4225
+Wire Wire Line
+	925  4225 925  4425
+Wire Wire Line
+	925  4525 1275 4525
+Wire Wire Line
+	1225 4425 1425 4425
+Wire Wire Line
+	1225 4225 1425 4225
+Wire Wire Line
+	1325 4325 1275 4325
+Wire Wire Line
+	1275 4325 1275 4525
+Connection ~ 1275 4525
+Wire Wire Line
+	1525 4325 1575 4325
+Wire Wire Line
+	1575 4325 1575 4525
+Wire Wire Line
+	1275 4525 1575 4525
+Wire Wire Line
+	925  4575 925  4525
+Connection ~ 925  4525
+$Comp
+L power:GND #PWR01
+U 1 1 60D01046
+P 925 4575
+F 0 "#PWR01" H 925 4325 50  0001 C CNN
+F 1 "GND" H 930 4402 50  0000 C CNN
+F 2 "" H 925 4575 50  0001 C CNN
+F 3 "" H 925 4575 50  0001 C CNN
+	1    925  4575
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	925  4425 1025 4425
+Connection ~ 925  4425
+Wire Wire Line
+	925  4425 925  4525
+Wire Wire Line
+	1975 4825 1825 4825
+$Comp
+L Device:R_Small R1
+U 1 1 60D2FE9D
+P 1875 3875
+F 0 "R1" H 1925 3975 50  0000 L CNN
+F 1 "10k" V 1975 3775 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 1875 3875 50  0001 C CNN
+F 3 "~" H 1875 3875 50  0001 C CNN
+	1    1875 3875
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1975 4025 1875 4025
+Wire Wire Line
+	1875 4025 1875 3975
+Wire Wire Line
+	1875 3725 1875 3775
+$Comp
+L power:+5V #PWR07
+U 1 1 60D4FD29
+P 1875 3725
+F 0 "#PWR07" H 1875 3575 50  0001 C CNN
+F 1 "+5V" H 1890 3898 50  0000 C CNN
+F 2 "" H 1875 3725 50  0001 C CNN
+F 3 "" H 1875 3725 50  0001 C CNN
+	1    1875 3725
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR05
+U 1 1 60D5263B
+P 1825 4825
+F 0 "#PWR05" H 1825 4675 50  0001 C CNN
+F 1 "+5V" H 1840 4998 50  0000 C CNN
+F 2 "" H 1825 4825 50  0001 C CNN
+F 3 "" H 1825 4825 50  0001 C CNN
+	1    1825 4825
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R3
+U 1 1 60E214E7
+P 8450 4775
+F 0 "R3" V 8400 4925 50  0000 C CNN
+F 1 "22R" V 8500 4925 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 8450 4775 50  0001 C CNN
+F 3 "~" H 8450 4775 50  0001 C CNN
+	1    8450 4775
+	0    -1   1    0   
+$EndComp
+$Comp
+L Device:R_Small R4
+U 1 1 60E25D86
+P 8450 4975
+F 0 "R4" V 8400 5125 50  0000 C CNN
+F 1 "22R" V 8500 5125 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 8450 4975 50  0001 C CNN
+F 3 "~" H 8450 4975 50  0001 C CNN
+	1    8450 4975
+	0    -1   1    0   
+$EndComp
+NoConn ~ 1975 4625
+$Comp
+L Device:C_Small C8
+U 1 1 60F89159
+P 1825 5425
+F 0 "C8" H 1917 5471 50  0000 L CNN
+F 1 "1uF" H 1875 5325 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 1825 5425 50  0001 C CNN
+F 3 "~" H 1825 5425 50  0001 C CNN
+	1    1825 5425
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1975 5325 1825 5325
+Wire Wire Line
+	1825 5625 1825 5525
+$Comp
+L power:GND #PWR06
+U 1 1 60FB09B9
+P 1825 5625
+F 0 "#PWR06" H 1825 5375 50  0001 C CNN
+F 1 "GND" H 1830 5452 50  0000 C CNN
+F 2 "" H 1825 5625 50  0001 C CNN
+F 3 "" H 1825 5625 50  0001 C CNN
+	1    1825 5625
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW4
+U 1 1 60FB4EC6
+P 1325 4025
+F 0 "SW4" H 1325 4310 50  0000 C CNN
+F 1 "SW_Push" H 1325 4219 50  0000 C CNN
+F 2 "Weteor:Micro_Push_Button_3x6x2.5mm" H 1325 4225 50  0001 C CNN
+F 3 "~" H 1325 4225 50  0001 C CNN
+	1    1325 4025
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1125 4025 1075 4025
+$Comp
+L power:GND #PWR02
+U 1 1 60FDD454
+P 1075 4025
+F 0 "#PWR02" H 1075 3775 50  0001 C CNN
+F 1 "GND" V 1080 3897 50  0000 R CNN
+F 2 "" H 1075 4025 50  0001 C CNN
+F 3 "" H 1075 4025 50  0001 C CNN
+	1    1075 4025
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2675 3675 2675 3725
+Wire Wire Line
+	2575 3725 2575 3675
+Connection ~ 2575 3675
+Wire Wire Line
+	2575 3675 2675 3675
+Wire Wire Line
+	2475 3675 2475 3725
+Wire Wire Line
+	2475 3675 2575 3675
+Wire Wire Line
+	2575 3675 2575 3625
+$Comp
+L power:+5V #PWR09
+U 1 1 610350DA
+P 2575 3625
+F 0 "#PWR09" H 2575 3475 50  0001 C CNN
+F 1 "+5V" H 2590 3798 50  0000 C CNN
+F 2 "" H 2575 3625 50  0001 C CNN
+F 3 "" H 2575 3625 50  0001 C CNN
+	1    2575 3625
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2475 7375 2475 7325
+Wire Wire Line
+	2575 7375 2575 7325
+Wire Wire Line
+	2475 7375 2525 7375
+Wire Wire Line
+	2525 7375 2525 7425
+Connection ~ 2525 7375
+Wire Wire Line
+	2525 7375 2575 7375
+Connection ~ 1875 4025
+$Comp
+L Device:R_Small R2
+U 1 1 61105C7C
+P 3375 6125
+F 0 "R2" V 3325 6275 50  0000 C CNN
+F 1 "10k" V 3375 6125 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 3375 6125 50  0001 C CNN
+F 3 "~" H 3375 6125 50  0001 C CNN
+	1    3375 6125
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR010
+U 1 1 61106362
+P 3575 6225
+F 0 "#PWR010" H 3575 5975 50  0001 C CNN
+F 1 "GND" H 3580 6052 50  0000 C CNN
+F 2 "" H 3575 6225 50  0001 C CNN
+F 3 "" H 3575 6225 50  0001 C CNN
+	1    3575 6225
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3175 6125 3275 6125
+Wire Wire Line
+	3475 6125 3575 6125
+Wire Wire Line
+	3575 6125 3575 6225
+Wire Wire Line
+	3175 5225 3275 5225
+Wire Wire Line
+	3175 5325 3275 5325
+Text Label 3275 5225 0    50   ~ 0
+I2C_SCL_L
+Text Label 3275 5325 0    50   ~ 0
+I2C_SDA_L
+$Comp
+L Device:C_Small C3
+U 1 1 6129BD11
+P 1275 5925
+F 0 "C3" V 1225 6025 50  0000 C CNN
+F 1 "0.1uF" V 1325 6075 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 1275 5925 50  0001 C CNN
+F 3 "~" H 1275 5925 50  0001 C CNN
+	1    1275 5925
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C_Small C5
+U 1 1 6129D191
+P 1275 6425
+F 0 "C5" V 1225 6525 50  0000 C CNN
+F 1 "0.1uF" V 1325 6575 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 1275 6425 50  0001 C CNN
+F 3 "~" H 1275 6425 50  0001 C CNN
+	1    1275 6425
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C_Small C6
+U 1 1 6129D4F7
+P 1275 6675
+F 0 "C6" V 1225 6775 50  0000 C CNN
+F 1 "0.1uF" V 1325 6825 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 1275 6675 50  0001 C CNN
+F 3 "~" H 1275 6675 50  0001 C CNN
+	1    1275 6675
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C_Small C7
+U 1 1 6129EB69
+P 1275 6925
+F 0 "C7" V 1225 7025 50  0000 C CNN
+F 1 "4.7uF" V 1325 7075 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 1275 6925 50  0001 C CNN
+F 3 "~" H 1275 6925 50  0001 C CNN
+	1    1275 6925
+	0    1    1    0   
+$EndComp
+$Comp
+L power:+5V #PWR03
+U 1 1 612A5B89
+P 1075 5775
+F 0 "#PWR03" H 1075 5625 50  0001 C CNN
+F 1 "+5V" H 1090 5948 50  0000 C CNN
+F 2 "" H 1075 5775 50  0001 C CNN
+F 3 "" H 1075 5775 50  0001 C CNN
+	1    1075 5775
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR04
+U 1 1 612A677C
+P 1475 7125
+F 0 "#PWR04" H 1475 6875 50  0001 C CNN
+F 1 "GND" H 1480 6952 50  0000 C CNN
+F 2 "" H 1475 7125 50  0001 C CNN
+F 3 "" H 1475 7125 50  0001 C CNN
+	1    1475 7125
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1475 7125 1475 6925
+Wire Wire Line
+	1475 6925 1375 6925
+Wire Wire Line
+	1375 5925 1475 5925
+Wire Wire Line
+	1475 5925 1475 6175
+Connection ~ 1475 6925
+Wire Wire Line
+	1375 6675 1475 6675
+Connection ~ 1475 6675
+Wire Wire Line
+	1475 6675 1475 6925
+Wire Wire Line
+	1375 6425 1475 6425
+Connection ~ 1475 6425
+Wire Wire Line
+	1475 6425 1475 6675
+Wire Wire Line
+	1375 6175 1475 6175
+Connection ~ 1475 6175
+Wire Wire Line
+	1475 6175 1475 6425
+Wire Wire Line
+	1075 5775 1075 5925
+Wire Wire Line
+	1075 6925 1175 6925
+Wire Wire Line
+	1175 6675 1075 6675
+Connection ~ 1075 6675
+Wire Wire Line
+	1075 6675 1075 6925
+Wire Wire Line
+	1175 6425 1075 6425
+Connection ~ 1075 6425
+Wire Wire Line
+	1075 6425 1075 6675
+Wire Wire Line
+	1175 6175 1075 6175
+Connection ~ 1075 6175
+Wire Wire Line
+	1075 6175 1075 6425
+Wire Wire Line
+	1175 5925 1075 5925
+Connection ~ 1075 5925
+Wire Wire Line
+	1075 5925 1075 6175
+$Comp
+L Device:C_Small C4
+U 1 1 6129CDBC
+P 1275 6175
+F 0 "C4" V 1225 6275 50  0000 C CNN
+F 1 "0.1uF" V 1325 6325 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 1275 6175 50  0001 C CNN
+F 3 "~" H 1275 6175 50  0001 C CNN
+	1    1275 6175
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3275 4025 3175 4025
+Wire Wire Line
+	3275 4125 3175 4125
+Wire Wire Line
+	3275 4225 3175 4225
+Wire Wire Line
+	3275 4325 3175 4325
+Wire Wire Line
+	3275 4425 3175 4425
+Wire Wire Line
+	3175 4525 3275 4525
+Wire Wire Line
+	3275 4625 3175 4625
+$Comp
+L power:PWR_FLAG #FLG01
+U 1 1 61D58D02
+P 6450 7350
+F 0 "#FLG01" H 6450 7425 50  0001 C CNN
+F 1 "PWR_FLAG" V 6450 7477 50  0000 L CNN
+F 2 "" H 6450 7350 50  0001 C CNN
+F 3 "~" H 6450 7350 50  0001 C CNN
+	1    6450 7350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:PWR_FLAG #FLG02
+U 1 1 61D5A693
+P 6450 7450
+F 0 "#FLG02" H 6450 7525 50  0001 C CNN
+F 1 "PWR_FLAG" V 6450 7577 50  0000 L CNN
+F 2 "" H 6450 7450 50  0001 C CNN
+F 3 "~" H 6450 7450 50  0001 C CNN
+	1    6450 7450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:PWR_FLAG #FLG03
+U 1 1 61D5A8BB
+P 6450 7550
+F 0 "#FLG03" H 6450 7625 50  0001 C CNN
+F 1 "PWR_FLAG" V 6450 7677 50  0000 L CNN
+F 2 "" H 6450 7550 50  0001 C CNN
+F 3 "~" H 6450 7550 50  0001 C CNN
+	1    6450 7550
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:PWR_FLAG #FLG04
+U 1 1 61D5AB25
+P 6450 7650
+F 0 "#FLG04" H 6450 7725 50  0001 C CNN
+F 1 "PWR_FLAG" V 6450 7777 50  0000 L CNN
+F 2 "" H 6450 7650 50  0001 C CNN
+F 3 "~" H 6450 7650 50  0001 C CNN
+	1    6450 7650
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	6500 7350 6450 7350
+Wire Wire Line
+	6450 7450 6500 7450
+Wire Wire Line
+	6450 7550 6500 7550
+Wire Wire Line
+	6450 7650 6500 7650
+$Comp
+L power:VDD #PWR013
+U 1 1 61DEFE1C
+P 6500 7550
+F 0 "#PWR013" H 6500 7400 50  0001 C CNN
+F 1 "VDD" V 6515 7678 50  0000 L CNN
+F 2 "" H 6500 7550 50  0001 C CNN
+F 3 "" H 6500 7550 50  0001 C CNN
+	1    6500 7550
+	0    1    1    0   
+$EndComp
+$Comp
+L power:VSS #PWR014
+U 1 1 61DF08EA
+P 6500 7650
+F 0 "#PWR014" H 6500 7500 50  0001 C CNN
+F 1 "VSS" V 6515 7778 50  0000 L CNN
+F 2 "" H 6500 7650 50  0001 C CNN
+F 3 "" H 6500 7650 50  0001 C CNN
+	1    6500 7650
+	0    1    1    0   
+$EndComp
+$Comp
+L power:+5V #PWR011
+U 1 1 61DF29B2
+P 6500 7350
+F 0 "#PWR011" H 6500 7200 50  0001 C CNN
+F 1 "+5V" V 6515 7478 50  0000 L CNN
+F 2 "" H 6500 7350 50  0001 C CNN
+F 3 "" H 6500 7350 50  0001 C CNN
+	1    6500 7350
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR08
+U 1 1 6108A233
+P 2525 7425
+F 0 "#PWR08" H 2525 7175 50  0001 C CNN
+F 1 "GND" H 2530 7252 50  0000 C CNN
+F 2 "" H 2525 7425 50  0001 C CNN
+F 3 "" H 2525 7425 50  0001 C CNN
+	1    2525 7425
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR012
+U 1 1 61E1C1EF
+P 6500 7450
+F 0 "#PWR012" H 6500 7200 50  0001 C CNN
+F 1 "GND" V 6505 7322 50  0000 R CNN
+F 2 "" H 6500 7450 50  0001 C CNN
+F 3 "" H 6500 7450 50  0001 C CNN
+	1    6500 7450
+	0    -1   -1   0   
+$EndComp
+Text Label 3275 5625 0    50   ~ 0
+Col_1
+Text Label 3275 5725 0    50   ~ 0
+Col_2
+Text Label 3175 6225 0    50   ~ 0
+Col_L1
+Text Label 3275 5925 0    50   ~ 0
+Row_3
+Text Label 3275 5825 0    50   ~ 0
+Col_0
+Text Label 3275 6625 0    50   ~ 0
+Row_2
+Text Label 3275 6525 0    50   ~ 0
+Row_1
+Text Label 3275 6425 0    50   ~ 0
+Row_0
+Text Label 925  1150 2    50   ~ 0
+Row_0
+Text Label 925  1850 2    50   ~ 0
+Row_1
+Text Label 925  2550 2    50   ~ 0
+Row_2
+Text Label 925  3250 2    50   ~ 0
+Row_3
+Text Label 1025 850  1    50   ~ 0
+Col_0
+Text Label 1875 850  1    50   ~ 0
+Col_1
+Text Label 2725 850  1    50   ~ 0
+Col_2
+Text Label 3575 850  1    50   ~ 0
+Col_3
+Text Label 4425 850  1    50   ~ 0
+Col_4
+$Comp
+L Device:D_Small D4
+U 1 1 6058F63F
+P 2475 1050
+F 0 "D4" V 2521 980 50  0000 R CNN
+F 1 "D" V 2430 980 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 2475 1050 50  0001 C CNN
+F 3 "~" V 2475 1050 50  0001 C CNN
+	1    2475 1050
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	8900 4625 8700 4625
+Wire Wire Line
+	8700 4625 8700 4725
+Wire Wire Line
+	8700 4725 8900 4725
+Wire Wire Line
+	8700 4725 8700 4775
+Wire Wire Line
+	8700 4775 8550 4775
+Connection ~ 8700 4725
+Wire Wire Line
+	8900 4825 8700 4825
+Wire Wire Line
+	8700 4825 8700 4925
+Wire Wire Line
+	8700 4925 8900 4925
+Wire Wire Line
+	8700 4925 8700 4975
+Wire Wire Line
+	8700 4975 8550 4975
+Connection ~ 8700 4925
+Wire Wire Line
+	8350 4775 8100 4775
+Wire Wire Line
+	8350 4975 8100 4975
+Text Label 8100 4775 2    50   ~ 0
+D-
+Text Label 8100 4975 2    50   ~ 0
+D+
+Wire Wire Line
+	1975 5125 1825 5125
+Wire Wire Line
+	1825 5025 1975 5025
+Text Label 1825 5025 2    50   ~ 0
+D+
+Text Label 1825 5125 2    50   ~ 0
+D-
+$Comp
+L MCU_Microchip_ATmega:ATmega32U4-AU U1
+U 1 1 611A3CF9
+P 2575 5525
+F 0 "U1" H 2575 3636 50  0000 C CNN
+F 1 "ATmega32U4-AU" H 2575 3545 50  0000 C CNN
+F 2 "Package_QFP:TQFP-44_10x10mm_P0.8mm" H 2575 5525 50  0001 C CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Datasheet.pdf" H 2575 5525 50  0001 C CNN
+	1    2575 5525
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1525 4025 1875 4025
+NoConn ~ 3025 800 
+Text Label 9800 850  1    50   ~ 0
+Col_9
+Text Label 8950 850  1    50   ~ 0
+Col_8
+Text Label 8100 850  1    50   ~ 0
+Col_7
+Text Label 7250 850  1    50   ~ 0
+Col_6
+Text Label 6400 850  1    50   ~ 0
+Col_5
+Wire Wire Line
+	7350 3050 7250 3050
+Wire Wire Line
+	7000 3250 7850 3250
+Wire Wire Line
+	7750 3050 7850 3050
+$Comp
+L Device:D_Small D21
+U 1 1 605A8327
+P 7000 3150
+F 0 "D21" V 7046 3080 50  0000 R CNN
+F 1 "D" V 6955 3080 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 7000 3150 50  0001 C CNN
+F 3 "~" V 7000 3150 50  0001 C CNN
+	1    7000 3150
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D25
+U 1 1 605A831D
+P 7850 3150
+F 0 "D25" V 7896 3080 50  0000 R CNN
+F 1 "D" V 7805 3080 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 7850 3150 50  0001 C CNN
+F 3 "~" V 7850 3150 50  0001 C CNN
+	1    7850 3150
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	9550 2550 10400 2550
+Connection ~ 9550 2550
+Wire Wire Line
+	8700 2550 9550 2550
+Connection ~ 8700 2550
+Wire Wire Line
+	7850 2550 8700 2550
+Connection ~ 7850 2550
+Wire Wire Line
+	7000 2550 7850 2550
+Connection ~ 7000 2550
+Connection ~ 6400 1650
+Wire Wire Line
+	6400 2350 6400 1650
+Wire Wire Line
+	6500 2350 6400 2350
+Connection ~ 7250 1650
+Wire Wire Line
+	7250 2350 7250 1650
+Wire Wire Line
+	7350 2350 7250 2350
+Connection ~ 8100 1650
+Wire Wire Line
+	8100 2350 8100 1650
+Wire Wire Line
+	8200 2350 8100 2350
+Connection ~ 8950 1650
+Wire Wire Line
+	8950 2350 8950 1650
+Wire Wire Line
+	9050 2350 8950 2350
+Connection ~ 9800 1650
+Wire Wire Line
+	9800 2350 9800 1650
+Wire Wire Line
+	9900 2350 9800 2350
+Wire Wire Line
+	10300 2350 10400 2350
+Wire Wire Line
+	9450 2350 9550 2350
+Wire Wire Line
+	8600 2350 8700 2350
+Wire Wire Line
+	7750 2350 7850 2350
+Wire Wire Line
+	6900 2350 7000 2350
+$Comp
+L Device:D_Small D34
+U 1 1 605A82EC
+P 10400 2450
+F 0 "D34" V 10446 2380 50  0000 R CNN
+F 1 "D" V 10355 2380 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 10400 2450 50  0001 C CNN
+F 3 "~" V 10400 2450 50  0001 C CNN
+	1    10400 2450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D31
+U 1 1 605A82E2
+P 9550 2450
+F 0 "D31" V 9596 2380 50  0000 R CNN
+F 1 "D" V 9505 2380 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 9550 2450 50  0001 C CNN
+F 3 "~" V 9550 2450 50  0001 C CNN
+	1    9550 2450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D28
+U 1 1 605A82D8
+P 8700 2450
+F 0 "D28" V 8746 2380 50  0000 R CNN
+F 1 "D" V 8655 2380 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 8700 2450 50  0001 C CNN
+F 3 "~" V 8700 2450 50  0001 C CNN
+	1    8700 2450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D24
+U 1 1 605A82CE
+P 7850 2450
+F 0 "D24" V 7896 2380 50  0000 R CNN
+F 1 "D" V 7805 2380 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 7850 2450 50  0001 C CNN
+F 3 "~" V 7850 2450 50  0001 C CNN
+	1    7850 2450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D20
+U 1 1 605A82C4
+P 7000 2450
+F 0 "D20" V 7046 2380 50  0000 R CNN
+F 1 "D" V 6955 2380 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 7000 2450 50  0001 C CNN
+F 3 "~" V 7000 2450 50  0001 C CNN
+	1    7000 2450
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	9550 1850 10400 1850
+Connection ~ 9550 1850
+Wire Wire Line
+	8700 1850 9550 1850
+Connection ~ 8700 1850
+Wire Wire Line
+	7850 1850 8700 1850
+Connection ~ 7850 1850
+Wire Wire Line
+	7000 1850 7850 1850
+Connection ~ 7000 1850
+Connection ~ 9800 950 
+Wire Wire Line
+	9800 1650 9800 950 
+Wire Wire Line
+	9900 1650 9800 1650
+Connection ~ 8950 950 
+Wire Wire Line
+	8950 1650 8950 950 
+Wire Wire Line
+	9050 1650 8950 1650
+Connection ~ 8100 950 
+Wire Wire Line
+	8100 1650 8100 950 
+Wire Wire Line
+	8200 1650 8100 1650
+Connection ~ 7250 950 
+Wire Wire Line
+	7250 1650 7250 950 
+Wire Wire Line
+	7350 1650 7250 1650
+Wire Wire Line
+	10300 1650 10400 1650
+Wire Wire Line
+	9450 1650 9550 1650
+Wire Wire Line
+	8600 1650 8700 1650
+Wire Wire Line
+	7750 1650 7850 1650
+Wire Wire Line
+	6900 1650 7000 1650
+Connection ~ 6400 950 
+Wire Wire Line
+	6400 1650 6400 950 
+Wire Wire Line
+	6500 1650 6400 1650
+$Comp
+L Device:D_Small D33
+U 1 1 605A829C
+P 10400 1750
+F 0 "D33" V 10446 1680 50  0000 R CNN
+F 1 "D" V 10355 1680 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 10400 1750 50  0001 C CNN
+F 3 "~" V 10400 1750 50  0001 C CNN
+	1    10400 1750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D30
+U 1 1 605A8292
+P 9550 1750
+F 0 "D30" V 9596 1680 50  0000 R CNN
+F 1 "D" V 9505 1680 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 9550 1750 50  0001 C CNN
+F 3 "~" V 9550 1750 50  0001 C CNN
+	1    9550 1750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D27
+U 1 1 605A8288
+P 8700 1750
+F 0 "D27" V 8746 1680 50  0000 R CNN
+F 1 "D" V 8655 1680 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 8700 1750 50  0001 C CNN
+F 3 "~" V 8700 1750 50  0001 C CNN
+	1    8700 1750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D23
+U 1 1 605A827E
+P 7850 1750
+F 0 "D23" V 7896 1680 50  0000 R CNN
+F 1 "D" V 7805 1680 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 7850 1750 50  0001 C CNN
+F 3 "~" V 7850 1750 50  0001 C CNN
+	1    7850 1750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D19
+U 1 1 605A8274
+P 7000 1750
+F 0 "D19" V 7046 1680 50  0000 R CNN
+F 1 "D" V 6955 1680 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 7000 1750 50  0001 C CNN
+F 3 "~" V 7000 1750 50  0001 C CNN
+	1    7000 1750
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	9800 950  9900 950 
+Wire Wire Line
+	9800 850  9800 950 
+Wire Wire Line
+	8950 950  9050 950 
+Wire Wire Line
+	8950 850  8950 950 
+Wire Wire Line
+	8100 950  8200 950 
+Wire Wire Line
+	8100 850  8100 950 
+Wire Wire Line
+	7250 950  7350 950 
+Wire Wire Line
+	7250 850  7250 950 
+Wire Wire Line
+	6400 950  6500 950 
+Wire Wire Line
+	6400 850  6400 950 
+Wire Wire Line
+	8700 950  8600 950 
+Wire Wire Line
+	9550 950  9450 950 
+Wire Wire Line
+	10400 950  10300 950 
+Connection ~ 9550 1150
+Wire Wire Line
+	9550 1150 10400 1150
+$Comp
+L Device:D_Small D32
+U 1 1 605A825A
+P 10400 1050
+F 0 "D32" V 10446 980 50  0000 R CNN
+F 1 "D" V 10355 980 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 10400 1050 50  0001 C CNN
+F 3 "~" V 10400 1050 50  0001 C CNN
+	1    10400 1050
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	8700 1150 9550 1150
+Connection ~ 8700 1150
+Connection ~ 7850 1150
+Wire Wire Line
+	7850 1150 8700 1150
+Connection ~ 7000 1150
+Wire Wire Line
+	7000 1150 7850 1150
+Wire Wire Line
+	7750 950  7850 950 
+Wire Wire Line
+	6900 950  7000 950 
+$Comp
+L Device:D_Small D29
+U 1 1 605A8242
+P 9550 1050
+F 0 "D29" V 9596 980 50  0000 R CNN
+F 1 "D" V 9505 980 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 9550 1050 50  0001 C CNN
+F 3 "~" V 9550 1050 50  0001 C CNN
+	1    9550 1050
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D26
+U 1 1 605A8238
+P 8700 1050
+F 0 "D26" V 8746 980 50  0000 R CNN
+F 1 "D" V 8655 980 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 8700 1050 50  0001 C CNN
+F 3 "~" V 8700 1050 50  0001 C CNN
+	1    8700 1050
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D22
+U 1 1 605A822E
+P 7850 1050
+F 0 "D22" V 7896 980 50  0000 R CNN
+F 1 "D" V 7805 980 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 7850 1050 50  0001 C CNN
+F 3 "~" V 7850 1050 50  0001 C CNN
+	1    7850 1050
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small D18
+U 1 1 605A8224
+P 7000 1050
+F 0 "D18" V 7046 980 50  0000 R CNN
+F 1 "D" V 6955 980 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 7000 1050 50  0001 C CNN
+F 3 "~" V 7000 1050 50  0001 C CNN
+	1    7000 1050
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Switch:SW_Push SW35
+U 1 1 605A81FC
+P 10100 2350
+F 0 "SW35" H 10100 2635 50  0000 C CNN
+F 1 "SW_Push" H 10100 2544 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 10100 2550 50  0001 C CNN
+F 3 "~" H 10100 2550 50  0001 C CNN
+	1    10100 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW32
+U 1 1 605A81F2
+P 9250 2350
+F 0 "SW32" H 9250 2635 50  0000 C CNN
+F 1 "SW_Push" H 9250 2544 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 9250 2550 50  0001 C CNN
+F 3 "~" H 9250 2550 50  0001 C CNN
+	1    9250 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW29
+U 1 1 605A81E8
+P 8400 2350
+F 0 "SW29" H 8400 2635 50  0000 C CNN
+F 1 "SW_Push" H 8400 2544 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 8400 2550 50  0001 C CNN
+F 3 "~" H 8400 2550 50  0001 C CNN
+	1    8400 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW25
+U 1 1 605A81DE
+P 7550 2350
+F 0 "SW25" H 7550 2635 50  0000 C CNN
+F 1 "SW_Push" H 7550 2544 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 7550 2550 50  0001 C CNN
+F 3 "~" H 7550 2550 50  0001 C CNN
+	1    7550 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW21
+U 1 1 605A81D4
+P 6700 2350
+F 0 "SW21" H 6700 2635 50  0000 C CNN
+F 1 "SW_Push" H 6700 2544 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 6700 2550 50  0001 C CNN
+F 3 "~" H 6700 2550 50  0001 C CNN
+	1    6700 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW34
+U 1 1 605A81CA
+P 10100 1650
+F 0 "SW34" H 10100 1935 50  0000 C CNN
+F 1 "SW_Push" H 10100 1844 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 10100 1850 50  0001 C CNN
+F 3 "~" H 10100 1850 50  0001 C CNN
+	1    10100 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW31
+U 1 1 605A81C0
+P 9250 1650
+F 0 "SW31" H 9250 1935 50  0000 C CNN
+F 1 "SW_Push" H 9250 1844 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 9250 1850 50  0001 C CNN
+F 3 "~" H 9250 1850 50  0001 C CNN
+	1    9250 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW28
+U 1 1 605A81B6
+P 8400 1650
+F 0 "SW28" H 8400 1935 50  0000 C CNN
+F 1 "SW_Push" H 8400 1844 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 8400 1850 50  0001 C CNN
+F 3 "~" H 8400 1850 50  0001 C CNN
+	1    8400 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW24
+U 1 1 605A81AC
+P 7550 1650
+F 0 "SW24" H 7550 1935 50  0000 C CNN
+F 1 "SW_Push" H 7550 1844 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 7550 1850 50  0001 C CNN
+F 3 "~" H 7550 1850 50  0001 C CNN
+	1    7550 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW20
+U 1 1 605A81A2
+P 6700 1650
+F 0 "SW20" H 6700 1935 50  0000 C CNN
+F 1 "SW_Push" H 6700 1844 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 6700 1850 50  0001 C CNN
+F 3 "~" H 6700 1850 50  0001 C CNN
+	1    6700 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW33
+U 1 1 605A8198
+P 10100 950
+F 0 "SW33" H 10100 1235 50  0000 C CNN
+F 1 "SW_Push" H 10100 1144 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 10100 1150 50  0001 C CNN
+F 3 "~" H 10100 1150 50  0001 C CNN
+	1    10100 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW30
+U 1 1 605A818E
+P 9250 950
+F 0 "SW30" H 9250 1235 50  0000 C CNN
+F 1 "SW_Push" H 9250 1144 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 9250 1150 50  0001 C CNN
+F 3 "~" H 9250 1150 50  0001 C CNN
+	1    9250 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW27
+U 1 1 605A8184
+P 8400 950
+F 0 "SW27" H 8400 1235 50  0000 C CNN
+F 1 "SW_Push" H 8400 1144 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 8400 1150 50  0001 C CNN
+F 3 "~" H 8400 1150 50  0001 C CNN
+	1    8400 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW23
+U 1 1 605A817A
+P 7550 950
+F 0 "SW23" H 7550 1235 50  0000 C CNN
+F 1 "SW_Push" H 7550 1144 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 7550 1150 50  0001 C CNN
+F 3 "~" H 7550 1150 50  0001 C CNN
+	1    7550 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW19
+U 1 1 605A7DFC
+P 6700 950
+F 0 "SW19" H 6700 1235 50  0000 C CNN
+F 1 "SW_Push" H 6700 1144 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 6700 1150 50  0001 C CNN
+F 3 "~" H 6700 1150 50  0001 C CNN
+	1    6700 950 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7000 3050 6900 3050
+Wire Wire Line
+	6500 3050 6400 3050
+Wire Wire Line
+	7250 3050 7250 2350
+Connection ~ 7250 2350
+Wire Wire Line
+	6400 3050 6400 2350
+Connection ~ 6400 2350
+Wire Wire Line
+	7000 3250 5025 3250
+Connection ~ 7000 3250
+Connection ~ 5025 3250
+Wire Wire Line
+	5025 2550 7000 2550
+Connection ~ 5025 2550
+Wire Wire Line
+	5025 1850 7000 1850
+Connection ~ 5025 1850
+Wire Wire Line
+	5025 1150 7000 1150
+Connection ~ 5025 1150
+Wire Wire Line
+	3175 5025 3275 5025
+Wire Wire Line
+	3175 4925 3275 4925
+Wire Wire Line
+	3175 4725 3275 4725
+Text Label 3275 5425 0    50   ~ 0
+Col_4
+Text Label 3275 5525 0    50   ~ 0
+Col_3
+Text Label 3275 6725 0    50   ~ 0
+Col_5
+Wire Wire Line
+	3275 5425 3175 5425
+Wire Wire Line
+	3175 5525 3275 5525
+Wire Wire Line
+	3275 5625 3175 5625
+Text Label 3275 5025 0    50   ~ 0
+Col_7
+Text Label 3275 4925 0    50   ~ 0
+Col_8
+Text Label 3275 6825 0    50   ~ 0
+Col_6
+Wire Wire Line
+	3175 5725 3275 5725
+Text Label 3275 4625 0    50   ~ 0
+Col_9
+$Comp
+L Switch:SW_Push SW22
+U 1 1 605A8210
+P 6700 3050
+F 0 "SW22" H 6700 3335 50  0000 C CNN
+F 1 "SW_Push" H 6700 3244 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 6700 3250 50  0001 C CNN
+F 3 "~" H 6700 3250 50  0001 C CNN
+	1    6700 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW26
+U 1 1 605A821A
+P 7550 3050
+F 0 "SW26" H 7550 3335 50  0000 C CNN
+F 1 "SW_Push" H 7550 3244 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1.5u" H 7550 3250 50  0001 C CNN
+F 3 "~" H 7550 3250 50  0001 C CNN
+	1    7550 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW18
+U 1 1 605485FD
+P 4725 3050
+F 0 "SW18" H 4725 3335 50  0000 C CNN
+F 1 "SW_Push" H 4725 3244 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1u" H 4725 3250 50  0001 C CNN
+F 3 "~" H 4725 3250 50  0001 C CNN
+	1    4725 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW14
+U 1 1 6054896F
+P 3875 3050
+F 0 "SW14" H 3875 3335 50  0000 C CNN
+F 1 "SW_Push" H 3875 3244 50  0000 C CNN
+F 2 "Weteor:Kailh_Choc_1.5u" H 3875 3250 50  0001 C CNN
+F 3 "~" H 3875 3250 50  0001 C CNN
+	1    3875 3050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	925  3250 4175 3250
+$Comp
+L Device:Rotary_Encoder_Switch SW36
+U 1 1 612B2212
+P 9350 3125
+F 0 "SW36" H 9350 3492 50  0000 C CNN
+F 1 "Rotary_Encoder_Switch" H 9350 3401 50  0000 C CNN
+F 2 "Weteor:RotEncoderE11" H 9200 3285 50  0001 C CNN
+F 3 "~" H 9350 3385 50  0001 C CNN
+	1    9350 3125
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D_Small D35
+U 1 1 61367980
+P 9825 3225
+F 0 "D35" V 9871 3155 50  0000 R CNN
+F 1 "D" V 9780 3155 50  0000 R CNN
+F 2 "Weteor:D_SOD-123" V 9825 3225 50  0001 C CNN
+F 3 "~" V 9825 3225 50  0001 C CNN
+	1    9825 3225
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	9650 3225 9725 3225
+Wire Wire Line
+	9050 3125 8750 3125
+Wire Wire Line
+	9050 3025 8975 3025
+Wire Wire Line
+	9050 3225 8975 3225
+Text Label 8975 3025 2    50   ~ 0
+encA
+Text Label 8975 3225 2    50   ~ 0
+encB
+$Comp
+L power:GND #PWR018
+U 1 1 613DA164
+P 8750 3125
+F 0 "#PWR018" H 8750 2875 50  0001 C CNN
+F 1 "GND" V 8755 2997 50  0000 R CNN
+F 2 "" H 8750 3125 50  0001 C CNN
+F 3 "" H 8750 3125 50  0001 C CNN
+	1    8750 3125
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	9925 3225 9975 3225
+Wire Wire Line
+	9650 3025 9975 3025
+Text Label 9975 3025 0    50   ~ 0
+Col_2
+Text Label 9975 3225 0    50   ~ 0
+Row_3
+Wire Wire Line
+	3175 5825 3275 5825
+Wire Wire Line
+	3175 5925 3275 5925
+NoConn ~ 3275 4725
+NoConn ~ 3275 4325
+NoConn ~ 3275 4225
+NoConn ~ 3275 4125
+NoConn ~ 3275 4025
+Wire Wire Line
+	3175 6425 3275 6425
+Wire Wire Line
+	3175 6525 3275 6525
+Wire Wire Line
+	3175 6625 3275 6625
+Wire Wire Line
+	3175 6725 3275 6725
+Wire Wire Line
+	3175 6825 3275 6825
+Text Label 3275 4425 0    50   ~ 0
+encA
+Text Label 3275 4525 0    50   ~ 0
+encB
+$EndSCHEMATC
