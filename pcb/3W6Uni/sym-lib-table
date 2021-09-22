@@ -1,5 +1,0 @@
-(sym_lib_table
-  (lib (name "Weteor")(type "Legacy")(uri "/home/matthias/Data/proj/3W6Uni/pcb/part_library/weteor.lib")(options "")(descr ""))
-  (lib (name "MINEW_MS88SF2")(type "Legacy")(uri "/home/matthias/Data/proj/3W6Uni/pcb/ms88sf2_oreore.pretty/MINEW_MS88SF2.lib")(options "")(descr ""))
-  (lib (name "le_chiff_ble-rescue")(type "Legacy")(uri "/home/matthias/.build/le_chiff_ble/kicad/le_chiff_ble/le_chiff_ble-rescue.lib")(options "")(descr ""))
-)

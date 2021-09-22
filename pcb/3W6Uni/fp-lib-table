@@ -1,4 +1,0 @@
-(fp_lib_table
-  (lib (name "Weteor")(type "KiCad")(uri "/home/matthias/Data/proj/3W6Uni/pcb/part_library/weteor.pretty")(options "")(descr ""))
-  (lib (name "ms88sf2_oreore")(type "KiCad")(uri "/home/matthias/Data/proj/3W6Uni/pcb/ms88sf2_oreore.pretty")(options "")(descr ""))
-)
