@@ -69,22 +69,28 @@ def getInterceptPoint2D(p11, p12, p21, p22):
 # pCfg = cfgs.config_32
 pCfg = cfgs.config_32_ap
 cCfg = cfgs.config_highProfileChoc
-
+angled = False
 plate, oLine_pcb = bg.GeneratePlate(pCfg)
 
 def generateCt(plate, oLine_pcb, cCfg, pCfg):
-    
-    topExtra = 6
-    topAngle = 2.2
-    topOffset = cq.Vector(0,0,1.25)
-    
-    # topExtra = 6
-    # topAngle = 0
-    # topOffsetY = 0
-    
+
+    if angled:
+        # topExtra = 6
+        # topAngle = 2.2
+        # topOffset = cq.Vector(0,0,1.25)
+        topExtra = 6
+        topAngle = 1.3
+        topOffset = cq.Vector(0,0,0.4)
+    else:
+        topExtra = 6
+        topAngle = 0
+        topOffset = cq.Vector(0,0,-0.5)
+        
     filletS = 0.3
     filletL = 1
     chamferS = 0.25
+    
+    offset_s = -0.5
     
     tButtons = len(pCfg.tClusterRot)
     
@@ -92,6 +98,12 @@ def generateCt(plate, oLine_pcb, cCfg, pCfg):
     # outline_verts = outline.Vertices()
     # outline_case = outline.fillet2D(pCfg.filletSizeLarge, outline_verts)
     
+    ct_ = (cq.Workplane().add(outline_case).wires().first().translate((0,0,cCfg.heightAbovePlate+offset_s))
+                        .toPending()
+                        .offset2D((cCfg.wallThickness+cCfg.wallSafety))
+                        .extrude(-(cCfg.heightAbovePlate+offset_s+cCfg.switchClearance+cCfg.bottomThickness+cCfg.clearanceSafety))
+                )
+
     ct = (cq.Workplane().add(outline_case).wires().first().translate((0,0,cCfg.heightAbovePlate))
                         .toPending()
                         .offset2D((cCfg.wallThickness+cCfg.wallSafety))
@@ -110,7 +122,8 @@ def generateCt(plate, oLine_pcb, cCfg, pCfg):
     invSelector = cq.selectors.InverseSelector(selector)
 
     ct= ct.faces(">Z").wires().first().chamfer(2.5)
-    
+    ct_=ct_.faces(">Z").wires().first().chamfer(2.5)
+    debug(ct_)
     # ct = ct.faces(">Z").wires().first().chamfer(2,2.5)
     # ct = ct.faces("<<Z[-2]").edges(">Z").fillet(1)
 
@@ -235,15 +248,17 @@ def generateCt(plate, oLine_pcb, cCfg, pCfg):
 
 ct, cb, pcb, lip = generateCt(plate, oLine_pcb, cCfg, pCfg)
 
-loc = cq.Location(cq.Vector((0,-19.8,20)))
+# loc = cq.Location(cq.Vector((0,-19.8,20)))
+# cutout = cq.Workplane().pushPoints([loc]).circle(16.5).extrude(-50)
+loc = cq.Location(cq.Vector((0,-19,20)))
+cutout = cq.Workplane().pushPoints([loc]).rect(27,27).extrude(-50).edges("|Z").fillet(1)
 
-cutout = cq.Workplane().pushPoints([loc]).circle(16.5).extrude(-50)
 ct = ct.cut(cutout)
 
 
 # ct = ct.faces(">Z").workplane().pushPoints([loc]).hole(33)
 sel = cq.selectors.NearestToPointSelector((0,0,8))
-ct = ct.faces(sel).wires(cq.selectors.NearestToPointSelector((0,-20,0))).chamfer(0.27)
+ct = ct.faces(sel).wires(cq.selectors.NearestToPointSelector((0,-20,0))).chamfer(0.6)
 plate = plate.faces(">Z").workplane().pushPoints([loc]).hole(32)
 
 outline_case = plate.faces(">Z")
@@ -256,10 +271,13 @@ combine = combine.intersect(pcb)
 
 locc = ct.faces("+Y").faces(">>Y[-2]").val().Center()
 
-# loc = ((0, -(locc.z + cCfg.switchPlateToPcb)-0.8, -cCfg.wallThickness))
-loc = ((0, -(locc.z + cCfg.switchPlateToPcb)+0.67, -cCfg.wallThickness))
-ct = ct.faces("+Y").faces(">>Y[-2]").workplane().pushPoints([loc]).rect(12,6).cutBlind(cCfg.wallThickness)
-ct = ct.edges("|Y").fillet(1.5)
+if angled:
+    loc = ((0, -(locc.z + cCfg.switchPlateToPcb)+0.67, -cCfg.wallThickness))
+    ct = ct.faces("+Y").faces(">>Y[-2]").workplane().pushPoints([loc]).rect(12,6).cutBlind(cCfg.wallThickness)
+    ct = ct.edges("|Y").fillet(1.5)
+else:
+    loc = ((0, -(locc.z + cCfg.switchPlateToPcb)-0.8, -cCfg.wallThickness))
+    ct = ct.faces("+Y").faces(">>Y[-2]").workplane().pushPoints([loc]).rect(12,6).cutBlind(cCfg.wallThickness)
 
 ct = ct.faces("+Y").faces(">>Y[-2]").workplane().pushPoints([loc]).rect(20,8).cutBlind(-12+cCfg.wallSafety, 8)
 
