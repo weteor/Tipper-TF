@@ -2,7 +2,7 @@
   "board": {
     "design_settings": {
       "defaults": {
-        "board_outline_line_width": 0.049999999999999996,
+        "board_outline_line_width": 0.02,
         "copper_line_width": 0.19999999999999998,
         "copper_text_italic": false,
         "copper_text_size_h": 1.5,
@@ -345,7 +345,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "3W6Uni.kicad_pro",
+    "filename": "TipperTF.kicad_pro",
     "version": 1
   },
   "net_settings": {
