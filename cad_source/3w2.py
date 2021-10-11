@@ -250,8 +250,8 @@ ct, cb, pcb, lip = generateCt(plate, oLine_pcb, cCfg, pCfg)
 
 # loc = cq.Location(cq.Vector((0,-19.8,20)))
 # cutout = cq.Workplane().pushPoints([loc]).circle(16.5).extrude(-50)
-loc = cq.Location(cq.Vector((0,-19,20)))
-cutout = cq.Workplane().pushPoints([loc]).rect(27,27).extrude(-50).edges("|Z").fillet(1)
+loc = cq.Location(cq.Vector((0,-19,20)),cq.Vector((0,0,1)),45)
+cutout = cq.Workplane().pushPoints([loc]).rect(27.6,27.6).extrude(-50).edges("|Z").fillet(1)
 
 ct = ct.cut(cutout)
 
