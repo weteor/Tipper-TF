@@ -63,6 +63,7 @@
         "drill_out_of_range": "error",
         "duplicate_footprints": "warning",
         "extra_footprint": "warning",
+        "footprint_type_mismatch": "error",
         "hole_clearance": "error",
         "hole_near_hole": "error",
         "invalid_outline": "error",
@@ -124,7 +125,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "3W6Uni_back.kicad_pro",
+    "filename": "TipperTF_back.kicad_pro",
     "version": 1
   },
   "net_settings": {
@@ -148,7 +149,7 @@
       }
     ],
     "meta": {
-      "version": 1
+      "version": 2
     },
     "net_colors": null
   },

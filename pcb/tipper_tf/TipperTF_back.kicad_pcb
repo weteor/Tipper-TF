@@ -1,4 +1,4 @@
-(kicad_pcb (version 20210824) (generator pcbnew)
+(kicad_pcb (version 20210925) (generator pcbnew)
 
   (general
     (thickness 1.2)
@@ -84,7 +84,7 @@
 
   (footprint "MountingHole:MountingHole_2.2mm_M2_DIN965" (layer "F.Cu")
     (tedit 56D1B4CB) (tstamp 22d5d109-b932-44ac-af46-5f57f4c2db4e)
-    (at 178.65 122.64)
+    (at 178.92 123.41)
     (descr "Mounting Hole 2.2mm, no annular, M2, DIN965")
     (tags "mounting hole 2.2mm no annular m2 din965")
     (attr exclude_from_pos_files exclude_from_bom)
@@ -130,7 +130,7 @@
 
   (footprint "MountingHole:MountingHole_2.2mm_M2_DIN965" (layer "F.Cu")
     (tedit 56D1B4CB) (tstamp 3bd1f47b-ddb8-4f61-8f33-29f83653580d)
-    (at 128.06 122.63)
+    (at 127.68 123.41)
     (descr "Mounting Hole 2.2mm, no annular, M2, DIN965")
     (tags "mounting hole 2.2mm no annular m2 din965")
     (attr exclude_from_pos_files exclude_from_bom)
