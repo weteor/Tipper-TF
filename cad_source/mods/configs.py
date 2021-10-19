@@ -142,6 +142,31 @@ config_32_ap = keebConfig(
     lowerEdgeStraight = False,
     )
 
+config_32_apmx = keebConfig(
+    height_plate = 1.5,
+    height_pcb = 1.2,
+    spacing = mx_spacing,
+    hSize = (14,14),
+    rows =  3,
+    cols = 5,
+    keysPerCol= ( 3, 3, 3,     3, 3  ),
+    stagger  =  ( 2, 2, 6,     0,-13.5 ),
+    staggerX =  ( 0, 0, 0,     0, -1.75 ),
+    colRot   =  ( 0, 0, 0,     4, 15.5 ),
+    tClusterRot= (15,0),
+    tClusterSize = ( 1,   1.5),
+    tClusterPos= (-4.55,4),
+    tClusterSpacing= 3,
+    handRotation= 21,
+    handDistance = 22,
+    holeToEdge = 4,
+    filletSizeLarge= 5,
+    filletSizeSmall= 5,
+    upperEdgeIndent = True, 
+    upperEdgeOffset = 2.25,
+    lowerEdgeStraight = False,
+    )
+
 config_lowProfile = caseConfig  (
     switchClearance = 5.2,
     clearanceSafety = 1,
@@ -170,4 +195,19 @@ config_highProfileChoc = caseConfig(
     hDiameter = 3.2,
     hDepth = 5,
     switchPlateToPcb = 2.2,
+    )
+
+config_highProfileMx = caseConfig(
+    switchClearance = 8.3,
+    clearanceSafety = 1,
+    wallSafety = 2,
+    wallThickness = 2.5,
+    bottomThickness = 1.5,
+    heightAbovePlate = 6.6,
+    cutoutExtra = (0.25, 0.25 ),
+    thumbCutout = 2,
+    sHoleDiameter = 2.2,
+    hDiameter = 3.2,
+    hDepth = 5,
+    switchPlateToPcb = 5,
     )

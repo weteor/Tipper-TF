@@ -69,7 +69,7 @@ def getInterceptPoint2D(p11, p12, p21, p22):
 # pCfg = cfgs.config_32
 pCfg = cfgs.config_32_ap
 cCfg = cfgs.config_highProfileChoc
-angled = False
+angled = True
 plate, oLine_pcb = bg.GeneratePlate(pCfg)
 
 def generateCt(plate, oLine_pcb, cCfg, pCfg):
@@ -115,7 +115,6 @@ def generateCt(plate, oLine_pcb, cCfg, pCfg):
     ct = ct.faces(tag="gndFace").wires().first().toPending().extrude(topExtra)
     merger = cq.Workplane().transformed(offset=(topOffset.x,topOffset.y,cCfg.heightAbovePlate+topOffset.z)).rect(300,300).extrude(-20).rotateAboutCenter((1,0,0), topAngle)
     
-    # debug(ct.intersect(merger))
     ct = ct.intersect(merger)
     
     selector = cq.selectors.BoxSelector( (-300,-20,-1), (+300,-100,20))
@@ -123,7 +122,8 @@ def generateCt(plate, oLine_pcb, cCfg, pCfg):
 
     ct= ct.faces(">Z").wires().first().chamfer(2.5)
     ct_=ct_.faces(">Z").wires().first().chamfer(2.5)
-    debug(ct_)
+#@+++++++++++
+    # debug(ct_)
     # ct = ct.faces(">Z").wires().first().chamfer(2,2.5)
     # ct = ct.faces("<<Z[-2]").edges(">Z").fillet(1)
 
@@ -204,7 +204,7 @@ def generateCt(plate, oLine_pcb, cCfg, pCfg):
     
     pos = ct.faces("-Z").faces("<Z").edges("<Y").vertices("<X").val().toTuple()
     ct = (ct.faces("-Z").faces(">Z")
-                        .pushPoints([(pos[0]-7, pos[1]+34.25)])
+                        .pushPoints([(pos[0]-7.3, pos[1]+33.5)])
                         .circle(3.5).mirrorY()
                         .extrude(-(cCfg.switchClearance+cCfg.clearanceSafety))
                         )
@@ -231,7 +231,7 @@ def generateCt(plate, oLine_pcb, cCfg, pCfg):
     locs.append((loc.x+12.441, -(loc.y +6.649)))
     
     loc = ct.faces("-Z").faces("<<Z[-3]").faces("<Y").item(1).val().Center()
-    locs.append((loc.x+3.75, -(loc.y +(6+cCfg.wallSafety))))
+    locs.append((loc.x+7, -(loc.y +(17.15+cCfg.wallSafety))))
     ct = ct.faces("-Z").faces("<<Z[-3]").workplane().pushPoints(locs).circle(cCfg.hDiameter/2).mirrorY().cutBlind(-cCfg.hDepth)
     
     pcb = oLine_pcb.faces(">Z").wires().first().toPending().extrude(-pCfg.height_pcb)
@@ -272,9 +272,9 @@ combine = combine.intersect(pcb)
 locc = ct.faces("+Y").faces(">>Y[-2]").val().Center()
 
 if angled:
-    loc = ((0, -(locc.z + cCfg.switchPlateToPcb)+0.67, -cCfg.wallThickness))
+    loc = ((0, -(locc.z + cCfg.switchPlateToPcb)-0.1, -cCfg.wallThickness))
     ct = ct.faces("+Y").faces(">>Y[-2]").workplane().pushPoints([loc]).rect(12,6).cutBlind(cCfg.wallThickness)
-    ct = ct.edges("|Y").fillet(1.5)
+    # ct = ct.edges("|Y").fillet(1.5)
 else:
     loc = ((0, -(locc.z + cCfg.switchPlateToPcb)-0.8, -cCfg.wallThickness))
     ct = ct.faces("+Y").faces(">>Y[-2]").workplane().pushPoints([loc]).rect(12,6).cutBlind(cCfg.wallThickness)
@@ -298,6 +298,7 @@ ct = ct.faces(tag="theFace").rect(35,-45,(True,False)).cutBlind(-5.2)
 ct = ct.faces(tag="theFace").rect(6,-22.5,(True,False)).extrude(-5.2)
 ct = ct.faces(tag="theFace").rect(35,-10,(True,False)).extrude(-5.2)
 ct = ct.faces(tag="theFace").rect(35,-5,(True,False)).cutBlind(-5.2)
+ct = ct.faces(tag="theFace").rect(-17.5, 22.5,(False,False)).cutBlind(-5.2)
 ct = ct.faces(tag="theFace").rect(31,41).cutBlind(-5.2)
 # ct = ct.faces(tag="theFace").rect(60,60,(True, False)).extrude(-5.2)
 # ct = ct.faces(tag="theFace").rect(30,60,(True, False)).extrude(1.5)
@@ -318,7 +319,7 @@ combine = combine.faces(">Z").workplane().polyline(locs).mirrorY().extrude(-pCfg
 combine = combine.cut(ct)
 
 # show_object(combine, name="Combine", options={"color":(30,30,30)})
-show_object(cb, name="Case_bottom", options={"color":(198,196,188)})
+# show_object(cb, name="Case_bottom", options={"color":(198,196,188)})
 show_object(ct, name="Case_top", options={"color":(100,196,188)})
 # # show_object(pcb, name="pcb", options={"color":(30,30,30)})
 
