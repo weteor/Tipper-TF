@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name "weteor")(type "KiCad")(uri "/home/matthias/Data/proj/Tipper_TF/pcb/part_library/weteor.kicad_sym")(options "")(descr ""))
+)
