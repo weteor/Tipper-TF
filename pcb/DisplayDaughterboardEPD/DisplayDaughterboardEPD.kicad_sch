@@ -945,7 +945,6 @@
     )
   )
 
-
   (junction (at 114.3 79.375) (diameter 0) (color 0 0 0 0))
   (junction (at 123.19 79.375) (diameter 0) (color 0 0 0 0))
   (junction (at 123.19 101.6) (diameter 0) (color 0 0 0 0))
@@ -2138,7 +2137,7 @@
     (property "Value" "Conn_01x10_Female" (id 1) (at 56.4387 72.9866 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "Connector_FFC-FPC:TE_1-84953-0_1x10-1MP_P1.0mm_Horizontal" (id 2) (at 57.15 69.85 0)
+    (property "Footprint" "weteor:FCC 1x10 - JUSHUO AFC01-S10FCA-00" (id 2) (at 57.15 69.85 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 57.15 69.85 0)
@@ -2281,7 +2280,7 @@
       (reference "D3") (unit 1) (value "MBR0530") (footprint "Diode_SMD:D_SOD-123")
     )
     (path "/d451443c-71bc-4eb0-921c-3e7d2582980c"
-      (reference "J1") (unit 1) (value "Conn_01x10_Female") (footprint "Connector_FFC-FPC:TE_1-84953-0_1x10-1MP_P1.0mm_Horizontal")
+      (reference "J1") (unit 1) (value "Conn_01x10_Female") (footprint "weteor:FCC 1x10 - JUSHUO AFC01-S10FCA-00")
     )
     (path "/456287bd-7bae-409b-8ff0-e0544aef55e9"
       (reference "J2") (unit 1) (value "Conn_01x24_Female") (footprint "Connector_FFC-FPC:TE_2-1734839-4_1x24-1MP_P0.5mm_Horizontal")
