@@ -27,13 +27,13 @@ Prototypes for rev 2 are on the way. All files should be up to date.
 
 
 ### changes rev 2
-- no more encoders, too high and it's hard to find a knob with the right dimensions.
+- encoder is gone, too high and it's hard to find a knob with the right dimensions (well, and i don't use it to be honest).
 - instead an 1.54'' epaper display (good display GDEW0154M09 recommended because of the very fast refresh (0.83s full refresh)
 - new case design. 
-  - lower angle, but same space aroud the thumbs. 
-  - around 2-3mm lower, because without encoder the battery can be placed higher in the case.
+  - lower angle, but same space for the thumbs. 
+  - 2-3mm lower, because the battery can move up to the space the encoder occupied before.
   - less bulk overall
-- SMT Assembly Files for main PCB and Display daughter board
+- SMT Assembly files for main PCB and Display daughter board
 
 ## all files are considered untested prototypes, please don't use them to make your own board just yet. 
 rev 1 works fine, but the pcb doesn't exactly match the case. But with a little bit of cutting that can easily be fixed.
