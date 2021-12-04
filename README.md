@@ -1,6 +1,6 @@
 # Tipper-TF
 34 keys split unibody BLE keyboard. 
-![top](https://raw.githubusercontent.com/weteor/Tipper-TF/main/img/TipperRev2_top.jpg)
+
 
 - low profile
 - choc v1
