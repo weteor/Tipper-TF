@@ -1,7 +1,6 @@
 # Tipper-TF
 34 keys split unibody BLE keyboard. 
-
-![front](https://raw.githubusercontent.com/weteor/Tipper-TF/main/img/case_top.jpg)
+![top](https://raw.githubusercontent.com/weteor/Tipper-TF/main/img/TipperRev2_top.jpg)
 
 - low profile
 - choc v1
@@ -14,17 +13,12 @@
 
 ## rev 2
 
-comparison case rev1(left) vs. rev2
-![side](https://raw.githubusercontent.com/weteor/Tipper-TF/main/img/proto_rev2_comparison_side.png)
-![front_](https://raw.githubusercontent.com/weteor/Tipper-TF/main/img/proto_rev2_comparison_front.png)
-![front1](https://raw.githubusercontent.com/weteor/Tipper-TF/main/img/proto_rev2_comparison_front_2.png)
+![front](https://raw.githubusercontent.com/weteor/Tipper-TF/main/img/TipperRev2_front.jpg)
+![back](https://raw.githubusercontent.com/weteor/Tipper-TF/main/img/TipperRev2_back.jpg)
 
-
-Prototypes for rev 2 are on the way. All files should be up to date.
+Prototypes for rev 2 are there. Main PCB and case are ok. Displayboard needs some work.
 
 **I am not sure if everything works out as intended. If you can, please wait till I verified the prototype works before building one yourself**
-
-
 
 ### changes rev 2
 - encoder is gone, too high and it's hard to find a knob with the right dimensions (well, and i don't use it to be honest).
