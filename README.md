@@ -3,39 +3,40 @@
 
 ![top](https://raw.githubusercontent.com/weteor/Tipper-TF/main/img/TipperRev2_top_.jpg)
 
+## Features
+
 - low profile
-- choc v1
-- 1.54'' epaper display
+- choc v1 w/ choc spacing
 - angled hands
 - splayed columns
 - variable height on outer colum. Can be adjusted by a combination of pinheaders(1.27mm pitch, 1mm or 1.5mm height) + (at the moment) spacer pcbs.
-- BLE w/ ZMK
-- case files are supplied (cadquery for rev1, freecad for rev2)
+- 1.54'' epaper display
+- Bluetooth and USB connection 
+- case files are supplied (stl, as well as freecad files)
+- ZMK firmware support
 
-## rev 2
+## Want one?
+All production files you need to build your own Tipper TF can be found [here](https://github.com/weteor/Tipper-TF/tree/main/production).
 
+Please see the [build instruction](https://github.com/weteor/Tipper-TF/tree/main/production/build_instructions.md) for a more detailed listing of all things needed.
+
+All PCBs come with SMT assembly files, so you can order them fully assembled. No need to solder another 50 diodes.
+
+The files for the case are also provided. If you don't own a 3d printer, I've used JLCPCBs printing service (MJF nylon) and it turned out very good, so maybe take a look at that option.
+
+### firmware 
+The Tipper TF uses ZMK firmware.
+
+The zmk driver for the display driver chip is not in the official repository yet, so you will have to use [my ZMK fork](https://github.com/weteor/zmk/tree/Tipper_TF_rev2) if you want to build a firmware locally.
+
+If you prefer the github workflow, you can find the zmk config for the Tipper TF [here](https://github.com/weteor/Tipper_TF-Config). The config is already configured to pull ZMK from my fork, so you don't have to do anything further.
+
+### some more pictures
 ![front](https://raw.githubusercontent.com/weteor/Tipper-TF/main/img/TipperRev2_front.jpg)
 ![back](https://raw.githubusercontent.com/weteor/Tipper-TF/main/img/TipperRev2_back.jpg)
 
-Prototypes for rev 2 are there. Main PCB and case are ok. Displayboard needs some work.
-
-**I am not sure if everything works out as intended. If you can, please wait till I verified the prototype works before building one yourself**
-
-### changes rev 2
-- encoder is gone, too high and it's hard to find a knob with the right dimensions (well, and i don't use it to be honest).
-- instead an 1.54'' epaper display (good display GDEW0154M09 recommended because of the very fast refresh (0.83s full refresh)
-- new case design. 
-  - lower angle, but same space for the thumbs. 
-  - 2-3mm lower, because the battery can move up to the space the encoder occupied before.
-  - less bulk overall
-- SMT Assembly files for main PCB and Display daughter board
-
-## all files are considered untested prototypes, please don't use them to make your own board just yet. 
-rev 1 works fine, but the pcb doesn't exactly match the case. But with a little bit of cutting that can easily be fixed.
-rev 1 case is good, but the angle is a bit too high, so with MBK keycaps you might touch the case sometimes.
-
-### firmware 
-ZMK, config can be found [here](https://github.com/weteor/Tipper_TF-Config)
+## remarks
+MKB keycaps work great on the Tipper, but I very much prefer the Chicago Steno caps by Pseudoku. He provides some nice SCAD files for those, you may find them in [his github](https://github.com/pseudoku/PseudoMakeMeKeyCapProfiles). He also sells them in his shop [www.asymplex.xyz](https://www.asymplex.xyz/).
 
 ### thanks for help and inspiration:
 - [MangoIV](https://github.com/MangoIV/) and his [le-chiffre-ble](https://github.com/MangoIV/le_chiff_ble)
