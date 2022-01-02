@@ -9,6 +9,7 @@
 | 1   | display PCB                  | [gerber and SMT Assembly files](https://github.com/weteor/Tipper-TF/tree/main/production/PCB_DisplayBoard) |
 | 4-8 | spacer PCB                   | [gerber and SMT Assembly files](https://github.com/weteor/Tipper-TF/tree/main/production/PCB_spacer)       |
 | 1   | minew ms88sf2                | BT Module                                                                                |
+| 1   | USB connector                | USB C, 16 pin, mid mount, 1.6mm bottom to pins                                          |
 | 1   | EPD - GDEW0154M09            | 1.54'' E-paper Display by GoodDisplay                                                    |
 | 1   | 10pin, 0.5mm pitch FCP cable | same side contacts, 8cm recommended, 10cm works                                          |
 | 1   | LiPo Battery (403040)        | 500mAh, 40x30x4mm, for your own safety, please use one with build in protection circuits |
