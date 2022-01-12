@@ -3166,6 +3166,9 @@
   (gr_line (start 77.235971 113.861054) (end 105.735972 113.861056) (layer "Edge.Cuts") (width 0.05) (tstamp fb7c7818-05f3-49c3-8089-f562fb61f5f8))
   (gr_circle (center 82.490971 73.896056) (end 83.190972 73.896054) (layer "Edge.Cuts") (width 0.05) (fill none) (tstamp fe9d2bd8-1aaa-4ecc-bac1-157fa46b3f76))
   (gr_line (start 80.985971 76.361054) (end 80.985971 72.361054) (layer "Edge.Cuts") (width 0.05) (tstamp ff698596-77e1-40c2-abe9-7c33963d122f))
+  (gr_text "(c)weteor :: V2.0-20220107\ngithub.com/weteor/Tipper-TF\nCERN-OHL-P v2" (at 77.255 81.165) (layer "F.SilkS") (tstamp 4471eaf6-2597-4a17-80fb-2ba4a846bc75)
+    (effects (font (size 0.9 0.9) (thickness 0.153)) (justify left))
+  )
 
   (segment (start 98.855 95.6) (end 100.92 95.6) (width 0.25) (layer "F.Cu") (net 1) (tstamp 03b2c444-760d-4cf7-8d98-a039b38a1304))
   (segment (start 98.864047 102.501734) (end 98.864047 97.302047) (width 0.25) (layer "F.Cu") (net 1) (tstamp 4935fd0f-e09b-4ce1-be59-e82ce062b794))
