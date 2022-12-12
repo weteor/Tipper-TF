@@ -42,3 +42,8 @@ MKB keycaps work great on the Tipper, but I very much prefer the Chicago Steno c
 - [MangoIV](https://github.com/MangoIV/) and his [le-chiffre-ble](https://github.com/MangoIV/le_chiff_ble)
 - [broom's](https://github.com/davidphilipbarr) [hypergolic](https://github.com/davidphilipbarr/hypergolic)
 - [marv](https://github.com/MarvFPV) invaluable feedback and help with the case design
+
+## the rest
+Everything in this repository is free to use however you might see fit. If you want to support me and my projects, please consider linking back to this repository if you build/change/use anything. 
+
+If you would like to send me a tip, you could do it [here](https://ko-fi.com/weteor) (Please don't feel like you have to).
