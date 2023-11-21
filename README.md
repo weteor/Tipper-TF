@@ -10,7 +10,7 @@
 - angled hands
 - splayed columns
 - variable height on outer colum. Can be adjusted by a combination of pinheaders(1.27mm pitch, 1mm or 1.5mm height) + (at the moment) spacer pcbs.
-- 1.54'' epaper display
+- 1.54'' epaper display (Good Display GDEW0154M09)
 - Bluetooth and USB connection 
 - case files are supplied (stl, as well as freecad files)
 - ZMK firmware support
